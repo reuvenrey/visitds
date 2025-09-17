@@ -19,7 +19,7 @@
 
 */
 
-categories = ["none", "Attraction", "Entertainment", "Casino", "Restaurant", "Hotel", "Resort", ""];
+categories = ["none", "Attraction", "Entertainment", "Casino", "Restaurant", "Hotel", "Resort", "Seasonal"];
 // none0  attraction1  entertainment2  casino3  restaurant4  hotel5  resort6
 ages = ["none", "All Ages", "Adults and Teens", "Adults only 18+", "Adults only 21+"];
 // none0 (unrated), all1, teens2, 18+3, 21+4
