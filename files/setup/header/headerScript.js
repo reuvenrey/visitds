@@ -11,4 +11,10 @@ pgHead.innerHTML += '<meta charset="UTF-8">  <meta name="viewport" content="widt
     <link href="https://fonts.googleapis.com/css?family=Funnel+Sans" rel="stylesheet"> \
     <link rel="icon" type="image/x-icon" href="'+websiteLink+'files/images/siteIcon.ico">'; 
 
+// Populate the header
+header.innerHTML = "<div id='headerBar'><div id='hbContent'></div></div>"; // create the header bar
+    const headerContent = document.getElementById('hbContent');
+    headerContent.innerHTML = "<img id='headerLogo' src='"+websiteLink+"files/images/desertSpringsLogo-grayscale.png'>";
+
+
 
