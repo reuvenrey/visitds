@@ -1,4 +1,5 @@
-#pgHeader {position:fixed; top:0; left:0; right:0; margin:0;}
+/* HEADER */
+#pgHeader {position:fixed; top:0; left:0; right:0; margin:0; z-index:999;}
 
 	#pgHeader > #headerBar {position:fixed; top:0; width:100%;
 	             height:80px; margin:0; background:linear-gradient(midnightblue,black);
@@ -6,3 +7,12 @@
 		
 		#pgHeader > #headerBar > #hbContent {width:100%; max-width:1500px; margin:0px auto 0px auto;}
 		#hbContent > #headerLogo {height:70px; margin:5px 10px 5px 5px; cursor:pointer;}
+
+/* FOOTER */
+
+
+/* LOADING SCREEN */
+#loader {position:absolute; top:0; left:0; right:0; bottom:0;
+		background:black; opacity:1;
+		z-index:998; transition:0.5s;}
+#loader.hidden {opacity:0;}
