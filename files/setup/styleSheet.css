@@ -11,3 +11,7 @@ h1,h2,h3 {
 }
 
 h4{font-family: 'Lexend Deca',veranda; font-size:16px;}
+
+/* SPECIAL ELEMENTS */
+.banner {width:100%; height:50vh;}
+	.banner > img {width:100%; height:100%; object-fit:cover;}
