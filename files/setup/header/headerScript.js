@@ -18,3 +18,7 @@ header.innerHTML = "<div id='headerBar'><div id='hbContent'></div></div>"; // cr
 
 
 
+function finishLoad(){
+    pgLoader.classList.add("hidden");
+    setTimeout(function(){pgLoader.style.display='none';},500);
+}
