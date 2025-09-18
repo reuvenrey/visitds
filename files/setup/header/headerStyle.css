@@ -9,7 +9,10 @@
 		#hbContent > #headerLogo {height:70px; margin:5px 10px 5px 5px; cursor:pointer;}
 
 /* FOOTER */
-
+#pgFooter {width:100%; padding:10px; background:linear-gradient(midnightblue,black); color:white;}
+	#pgFooter > #footerContent {
+		width:100%; max-width:1500px; margin:10px auto 10px auto;
+	}
 
 /* LOADING SCREEN */
 #pgLoader {position:absolute; top:0; left:0; right:0; bottom:0;
