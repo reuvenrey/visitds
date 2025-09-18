@@ -1,1 +1,13 @@
-* {}
+* {  box-sizing: border-box; } html { scroll-behavior: smooth; }
+
+body {
+    font-size:16px; line-height:1.6;
+	  font-family: 'Funnel Sans',veranda;
+	  margin:0; margin-top:80px;
+}
+
+h1,h2,h3 {
+	font-family: 'Lexend Deca',veranda;
+}
+
+h4{font-family: 'Lexend Deca',veranda; font-size:16px;}
