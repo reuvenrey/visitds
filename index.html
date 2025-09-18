@@ -1,1 +1,49 @@
+<!DOCTYPE html> <html lang="en">
+    <head id='pgHead'>
+	    <!-- Load in initial style sheet --> <link rel='stylesheet' href='https://reuvenrey.github.io/visitds/files/setup/header/headerStyle.css'>
+	    
+		<title>Explore Desert Springs | Fun, Action, Adventure!</title> <!-- Dont Forget the page title!! -->
+    </head>
 
+<body onload='finishLoad()'> <div id='pgLoader'></div><div id='pgHeader'></div>
+
+		<style>
+			/* Custom header for index page only */
+			#indexHeader {position:fixed; top:0; width:100%; min-height:200px; background:linear-gradient(rgba(25, 25, 112,1),rgba(25, 25, 112,1),rgba(25, 25, 112,0)); transition:0.5s;}
+				#ihContent {width:100%; max-width:1500px; margin:20px auto 20px auto;}
+				#ihContent > #ihLogo {width:25%; height:auto; max-width:300px;}
+		</style>
+
+		<!-- BODY CONTENT HERE -->
+
+		<div id='indexHeader'>
+			<div id='ihContent'>
+				<img id='ihLogo' src='https://reuvenrey.github.io/visitds/files/images/desertSpringsLogo.png'>
+			</div>
+		</div>
+
+		<div class='banner'>
+			<img src='https://travelnevada.com/wp-content/uploads/2020/09/Vegas_Desktop.jpg'>
+		</div>
+		
+		<!-- END OF BODY CONTENT -->
+
+	<div id='pgFooter'></div>
+</body>
+    <!-- Load and run script to setup header and footer --> <script src="https://reuvenrey.github.io/visitds/files/setup/header/headerScript.js"></script>
+	<!-- Link any additional scripts below : <script src='script_src_link'></script> -->
+	<script>
+		document.getElementById("pgHeader").style.display = 'none'; // get rid of standard header
+
+		/*
+		window.addEventListener("scroll", function () { // change header when user scrolls
+		  const header = document.getElementById("indexHeader");
+		  if (window.scrollY > 400) {
+		    header.classList.add("filled");
+		  } else {
+		    header.classList.remove("filled");
+		  }
+		});
+  		*/
+	</script>
+</html>
