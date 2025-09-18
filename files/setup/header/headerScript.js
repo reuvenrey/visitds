@@ -17,7 +17,7 @@ header.innerHTML = "<div id='headerBar'><div id='hbContent'></div></div>"; // cr
     headerContent.innerHTML = "<img id='headerLogo' src='"+websiteLink+"files/images/desertSpringsLogo-grayscale.png' onclick='window.open(\""+websiteLink+"\",\"_self\")'>";
 
 // Populate the footer
-footer.innerHTML = "<p>© 2025 Desert Springs Ministry of Recreation | Department of Tourism</p>";
+footer.innerHTML = "<div id='footerContent'><p style='color:lightgray'>© 2025 Desert Springs Ministry of Recreation | Department of Tourism</p></div>";
 
 // Hide loading screen after page finished loading
 function finishLoad(){
