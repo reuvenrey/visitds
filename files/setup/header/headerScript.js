@@ -3,7 +3,12 @@ const footer = document.getElementById("pgFooter"); // Contents of Footer
 const pgHead = document.getElementById("pgHead"); // Title, meta data, etc.
 const pgLoader = document.getElementById("pgLoader"); // Loading Screen
 
+const websiteLink = "https://reuvenrey.github.io/visitds/";
+
 // Populate contents of page head - necessary for proper display on user-side
 pgHead.innerHTML = '<meta charset="UTF-8">  <meta name="viewport" content="width=device-width, initial-scale=1.0">\
-    <link href="https://fonts.googleapis.com/css?family=FONT_NAME" rel="stylesheet"> \ // load in custom website font
-    <link rel="icon" type="image/x-icon" href=""'; // website icon
+    <link rel="stylesheet" href="'+websiteLink+'files/setup/styleSheet.css">\
+    <link href="https://fonts.googleapis.com/css?family=Funnel+Sans" rel="stylesheet"> \
+    <link rel="icon" type="image/x-icon" href="'+websiteLink+'files/images/siteIcon.ico">'; 
+
+
