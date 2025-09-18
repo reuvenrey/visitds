@@ -14,7 +14,7 @@ pgHead.innerHTML += '<meta charset="UTF-8">  <meta name="viewport" content="widt
 // Populate the header
 header.innerHTML = "<div id='headerBar'><div id='hbContent'></div></div>"; // create the header bar
     const headerContent = document.getElementById('hbContent');
-    headerContent.innerHTML = "<img id='headerLogo' src='"+websiteLink+"files/images/desertSpringsLogo-grayscale.png'>";
+    headerContent.innerHTML = "<img id='headerLogo' src='"+websiteLink+"files/images/desertSpringsLogo-grayscale.png' onclick='window.open(\""+websiteLink+"\",\"_self\")'>";
 
 
 
