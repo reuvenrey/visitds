@@ -12,7 +12,7 @@
 
 
 /* LOADING SCREEN */
-#loader {position:absolute; top:0; left:0; right:0; bottom:0;
+#pgLoader {position:absolute; top:0; left:0; right:0; bottom:0;
 		background:black; opacity:1;
 		z-index:998; transition:0.5s;}
-#loader.hidden {opacity:0; pointer-events: none;}
+#pgLoader.hidden {opacity:0; pointer-events: none;}
