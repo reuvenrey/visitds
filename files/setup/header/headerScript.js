@@ -18,9 +18,9 @@ header.innerHTML = "<div id='headerBar'><div id='hbContent'></div></div>"; // cr
         <div id='headerLinks'></div>"; // holds the links to pages and menus ETC.
 
     if(window.innerWidth <= 1000){ // Reduced Header
-        document.getElementById("headerLinks").innerHTML = "<a><img src='"+websiteLink+"files/images/icons/menu-white.png'></a> <a href='"+websiteLink+"search'><img src='"+websiteLink+"files/images/icons/search-white.png'></a>";
+        document.getElementById("headerLinks").innerHTML = "<a href='"+websiteLink+"search'><img src='"+websiteLink+"files/images/icons/search-white.png'></a> <a><img src='"+websiteLink+"files/images/icons/menu-white.png'></a>";
     }
-    else{
+    else{ // Full-size Header
         document.getElementById("headerLinks").innerHTML = "<a>Explore</a> <a>Hotels & Resorts</a> <a>Information</a> <a href='"+websiteLink+"search'><img src='"+websiteLink+"files/images/icons/search-white.png'></a>";
     }
 
