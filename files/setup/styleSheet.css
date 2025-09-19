@@ -28,6 +28,9 @@ h4{font-family: 'Lexend Deca',veranda; font-size:18px;}
 .spacer {width:100%; max-width:1500px; margin:10px auto 10px auto;
 		height:1px; border-bottom:2px solid silver;}
 
+.section {width:100%; background:silver; color:black; margin:20px 0px 20px 0px; padding:20px 0px 20px 0px;}
+	.section.blue{background:midnightblue; color:white;}
+
 /* UI ELEMENTS */
 a.btn {display:inline-block; padding:5px; border:2px solid midnightBlue; color:midnightBlue; transition:0.5s;}
 	a.btn:hover{background:midnightblue; color:white;}
