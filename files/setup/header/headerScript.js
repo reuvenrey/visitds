@@ -8,7 +8,7 @@ const websiteLink = "https://reuvenrey.github.io/visitds/";
 // Populate contents of page head - necessary for proper display on user-side
 pgHead.innerHTML += '<meta charset="UTF-8">  <meta name="viewport" content="width=device-width, initial-scale=1.0">\
     <link rel="stylesheet" href="'+websiteLink+'files/setup/styleSheet.css">\
-    <link href="https://fonts.googleapis.com/css?family=Funnel+Sans" rel="stylesheet"> \
+    <link href="https://fonts.googleapis.com/css?family=Funnel+Sans|Lexend+Deca" rel="stylesheet"> \
     <link rel="icon" type="image/x-icon" href="'+websiteLink+'files/images/siteIcon.ico">'; 
 
 // Populate the HEADER
