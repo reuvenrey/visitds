@@ -12,6 +12,10 @@
 			#indexHeader {position:fixed; top:0; width:100%; min-height:200px; background:linear-gradient(rgba(25, 25, 112,1),rgba(25, 25, 112,1),rgba(25, 25, 112,0)); transition:0.5s;}
 				#ihContent {width:100%; max-width:1500px; margin:20px auto 20px auto;}
 				#ihContent > #ihLogo {width:25%; height:auto; max-width:300px;}
+				#ihContent .ihLink {}
+			@media screen and (max-width:1000px){
+				#indexHeader {display:none; pointer-events:none;}
+			}
 		</style>
 
 		<!-- BODY CONTENT HERE -->
@@ -19,6 +23,7 @@
 		<div id='indexHeader'>
 			<div id='ihContent'>
 				<img id='ihLogo' src='https://reuvenrey.github.io/visitds/files/images/desertSpringsLogo.png'>
+				
 			</div>
 		</div>
 
@@ -33,17 +38,22 @@
     <!-- Load and run script to setup header and footer --> <script src="https://reuvenrey.github.io/visitds/files/setup/header/headerScript.js"></script>
 	<!-- Link any additional scripts below : <script src='script_src_link'></script> -->
 	<script>
-		document.getElementById("pgHeader").style.display = 'none'; // get rid of standard header
 
-		/*
-		window.addEventListener("scroll", function () { // change header when user scrolls
-		  const header = document.getElementById("indexHeader");
-		  if (window.scrollY > 400) {
-		    header.classList.add("filled");
-		  } else {
-		    header.classList.remove("filled");
-		  }
-		});
-  		*/
+		// Determine the width of the user's screen, if it is less than 1000 px, use the standard header, otherwise use the fancy one
+		if(window.innerWidth <= 1000){
+				document.getElementById("pgHeader").style.display = 'block'; // bring back standard header
+			}else{
+				document.getElementById("pgHeader").style.display = 'none'; // get rid of standard header
+		}
+
+		// Run the above function everytime the window is resized
+		window.onresize = function(event) {
+	        // Your code to execute on window resize
+	        if(window.innerWidth <= 1000){
+				document.getElementById("pgHeader").style.display = 'block'; // bring back standard header
+			}else{
+				document.getElementById("pgHeader").style.display = 'none'; // get rid of standard header
+			}
+    	};
 	</script>
 </html>
