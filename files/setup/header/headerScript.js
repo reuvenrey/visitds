@@ -19,7 +19,7 @@ header.innerHTML = "<div id='headerBar'><div id='hbContent'></div></div>"; // cr
 
         // Contents of the Header Links Section:
         const smallHeaderContents = "<a href='"+websiteLink+"search'><img src='"+websiteLink+"files/images/icons/search-white.png'></a> <a><img src='"+websiteLink+"files/images/icons/menu-white.png'></a>";
-        const largeHeaderContetns = "<a>Attractions & Entertainment</a> <a>Hotels & Resorts</a> <a>Information</a> <a href='"+websiteLink+"search'><img src='"+websiteLink+"files/images/icons/search-white.png'></a>";
+        const largeHeaderContents = "<a>Attractions & Entertainment</a> <a>Hotels & Resorts</a> <a>Information</a> <a href='"+websiteLink+"search'><img src='"+websiteLink+"files/images/icons/search-white.png'></a>";
 
     if(window.innerWidth <= 1000){ // Reduced Header
         document.getElementById("headerLinks").innerHTML = smallHeaderContents;
