@@ -5,11 +5,16 @@
 	             height:80px; margin:0; background:linear-gradient(midnightblue,black);
 	           }
 		
-		#pgHeader > #headerBar > #hbContent {width:100%; max-width:1500px; margin:0px auto 0px auto;}
-		#hbContent > #headerLogo {height:70px; margin:5px 10px 5px 5px; cursor:pointer;}
+		#pgHeader > #headerBar > #hbContent {width:100%; max-width:1500px; margin:0px auto 0px auto; display:flex; flex-flow:row;}
+		#hbContent > #headerLogo {height:70px; margin:5px 10px 5px 5px; cursor:pointer; justify-self:flex-start;}
+
+		#hbContent > #headerLinks {margin:5px 5px 5px auto; justify-self:flex-end; color:white; display:flex; flex-flow:row;}
+			#hbContent > #headerLinks > a {margin:10px; margin-left:auto; padding:15px; font-weight:bold; transition:0.5s; font-size:20px;}
+				#hbContent > #headerLinks > a:hover {color:#FFC857; scale:1.03; cursor:pointer;}
+				#hbContent > #headerLinks > a > img {height:40px; margin-top:-10px; width:auto;}
 
 /* FOOTER */
-#pgFooter {width:100%; padding:10px; background:linear-gradient(midnightblue,black); color:white;}
+#pgFooter {width:100%; padding:10px; background:linear-gradient(midnightblue,black); color:silver;}
 	#pgFooter > #footerContent {
 		width:100%; max-width:1500px; margin:10px auto 10px auto;
 	}
