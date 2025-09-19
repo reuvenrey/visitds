@@ -1,7 +1,7 @@
 * {  box-sizing: border-box; } html { scroll-behavior: smooth; }
 
 body {
-    font-size:16px; line-height:1.6;
+    font-size:18px; line-height:1.6;
 	  font-family: 'Funnel Sans',veranda;
 	  margin:0; margin-top:80px;
 }
@@ -10,10 +10,10 @@ h1,h2,h3 {
 	font-family: 'Lexend Deca',veranda;
 }
 
-h4{font-family: 'Lexend Deca',veranda; font-size:16px;}
+h4{font-family: 'Lexend Deca',veranda; font-size:18px;}
 
 /* TEXT ELEMENTS */
-.container {}
+.container {width:100%; padding:10px; max-width:1500px; margin:20px auto 20px auto;}
 
 
 
@@ -24,7 +24,9 @@ h4{font-family: 'Lexend Deca',veranda; font-size:16px;}
 	.banner > .overlay {position:absolute; top:0; left:0; right:0; bottom:0;
 						background:rgba(0,0,0,0.6); color:white; text-align:center;
 						display:flex; flex-flow:row; align-items:center; justify-content:center; padding:20px;}
-	
+
+.spacer {width:100%; max-width:1500px; margin:10px auto 10px auto;
+		height:1px; border-bottom:2px solid silver;}
 
 /* UI ELEMENTS */
 a.btn {display:inline-block; padding:5px; border:2px solid midnightBlue; color:midnightBlue; transition:0.5s;}
