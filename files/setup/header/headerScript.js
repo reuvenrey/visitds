@@ -11,20 +11,24 @@ pgHead.innerHTML += '<meta charset="UTF-8">  <meta name="viewport" content="widt
     <link href="https://fonts.googleapis.com/css?family=Funnel+Sans" rel="stylesheet"> \
     <link rel="icon" type="image/x-icon" href="'+websiteLink+'files/images/siteIcon.ico">'; 
 
-// Populate the header
+// Populate the HEADER
 header.innerHTML = "<div id='headerBar'><div id='hbContent'></div></div>"; // create the header bar
     const headerContent = document.getElementById('hbContent');
     headerContent.innerHTML = "<img id='headerLogo' src='"+websiteLink+"files/images/desertSpringsLogo-grayscale.png' onclick='window.open(\""+websiteLink+"\",\"_self\")'>\
         <div id='headerLinks'></div>"; // holds the links to pages and menus ETC.
 
+        // Contents of the Header Links Section:
+        const smallHeaderContents = "<a href='"+websiteLink+"search'><img src='"+websiteLink+"files/images/icons/search-white.png'></a> <a><img src='"+websiteLink+"files/images/icons/menu-white.png'></a>";
+        const largeHeaderContetns = "<a>Attractions & Entertainment</a> <a>Hotels & Resorts</a> <a>Information</a> <a href='"+websiteLink+"search'><img src='"+websiteLink+"files/images/icons/search-white.png'></a>";
+
     if(window.innerWidth <= 1000){ // Reduced Header
-        document.getElementById("headerLinks").innerHTML = "<a href='"+websiteLink+"search'><img src='"+websiteLink+"files/images/icons/search-white.png'></a> <a><img src='"+websiteLink+"files/images/icons/menu-white.png'></a>";
+        document.getElementById("headerLinks").innerHTML = smallHeaderContents;
     }
     else{ // Full-size Header
-        document.getElementById("headerLinks").innerHTML = "<a>Explore</a> <a>Hotels & Resorts</a> <a>Information</a> <a href='"+websiteLink+"search'><img src='"+websiteLink+"files/images/icons/search-white.png'></a>";
+        document.getElementById("headerLinks").innerHTML = largeHeaderContents;
     }
 
-// Populate the footer
+// Populate the FOOTER
 footer.innerHTML = "<div id='footerContent'><p style='color:lightgray'>© 2025 Desert Springs Ministry of Recreation | Department of Tourism</p></div>";
 
 // Hide loading screen after page finished loading
@@ -32,3 +36,17 @@ function finishLoad(){
     pgLoader.classList.add("hidden");
     setTimeout(function(){pgLoader.style.display='none';},500);
 }
+
+
+
+// Functions
+    // Resize header everytime the window is resized
+		window.onresize = function(event) {
+	        // Your code to execute on window resize
+	        if(window.innerWidth <= 1000){ // Reduced Header
+                document.getElementById("headerLinks").innerHTML = smallHeaderContents;
+            }
+            else{ // Full-size Header
+                document.getElementById("headerLinks").innerHTML = largeHeaderContents;
+            }
+    	};
