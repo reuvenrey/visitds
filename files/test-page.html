@@ -1,0 +1,50 @@
+<!DOCTYPE html> <html lang="en">
+    <head id='pgHead'>
+	    <!-- Load in initial style sheet --> <link rel='stylesheet' href='../files/setup/header/headerStyle.css'>
+        
+	    
+		<title>Test Page | Visit Desert Springs</title> <!-- Dont Forget the page title!! -->
+    </head>
+
+    <link rel='stylesheet' href='../files/setup/styleSheet.css'>
+
+<body onload='finishLoad();'> <div id='pgLoader'></div><div id='pgHeader'></div>
+
+		<style>
+            
+        </style>
+
+		<!-- BODY CONTENT HERE -->
+
+		<div class="container">
+            <div class="slideshowContainer" >
+                <img src="">
+                <img src="">
+                <img src="">
+            </div>
+            <div class="slideshowControls"></div>
+        </div>
+
+        <a class="btn gold">Gold Button!</a> <a class="btn gold filled">Gold Filled Button!</a>
+        <p><a class='btn cyan'>Cyan Button</a> <a class='btn cyan filled'>Filled Cyan Button</a></p>
+        <a class="btn">Standard Button</a> <a class="btn filled">Filled Standard Button</a>
+        <!-- deleting controls div will make slideshow run automatically [or you can add startSsAuto() to body onload] -->
+
+        <div class="spacer"></div>
+
+        <div class="section">
+            <div class="container">
+                <h2>This is a Section, labeled with an H2 heading</h2>
+                And this is the section's contents. Blah blah blah, big meaningless paragraph of tourist jargon.
+                <p><a class='btn cyan filled noLeft'>Oh! And Here's a Button!</a></p>
+            </div>
+        </div>
+		
+		<!-- END OF BODY CONTENT -->
+
+	<div id='pgFooter'></div>
+</body>
+    <!-- Load and run script to setup header and footer --> <script src="../files/setup/header/headerScript.js"></script>
+	<!-- Link any additional scripts below : <script src='script_src_link'></script> -->
+     <script src="scripts/slideshow-script.js"></script>
+</html>
