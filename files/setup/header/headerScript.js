@@ -7,7 +7,6 @@ const websiteLink = "https://reuvenrey.github.io/visitds/";
 
 // Populate contents of page head - necessary for proper display on user-side
 pgHead.innerHTML += '<meta charset="UTF-8">  <meta name="viewport" content="width=device-width, initial-scale=1.0">\
-    <link rel="stylesheet" href="'+websiteLink+'files/setup/styleSheet.css">\
     <link href="https://fonts.googleapis.com/css?family=Funnel+Sans|Lexend+Deca" rel="stylesheet"> \
     <link rel="icon" type="image/x-icon" href="'+websiteLink+'files/images/siteIcon.ico">'; 
 
@@ -19,7 +18,7 @@ header.innerHTML = "<div id='headerBar'><div id='hbContent'></div></div>"; // cr
 
         // Contents of the Header Links Section:
         const smallHeaderContents = "<a href='"+websiteLink+"search'><img src='"+websiteLink+"files/images/icons/search-white.png'></a> <a><img src='"+websiteLink+"files/images/icons/menu-white.png'></a>";
-        const largeHeaderContents = "<a>Attractions & Entertainment</a> <a>Hotels & Resorts</a> <a>Information</a> <a href='"+websiteLink+"search'><img src='"+websiteLink+"files/images/icons/search-white.png'></a>";
+        const largeHeaderContents = "<a href='"+websiteLink+"explore/things-to-do'>Things to Do</a> <a href='"+websiteLink+"explore/things-to-do?categories=0'>Hotels & Resorts</a> <a>Information</a> <a href='"+websiteLink+"search'><img src='"+websiteLink+"files/images/icons/search-white.png'></a>";
 
     if(window.innerWidth <= 1000){ // Reduced Header
         document.getElementById("headerLinks").innerHTML = smallHeaderContents;

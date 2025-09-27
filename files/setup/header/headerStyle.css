@@ -9,7 +9,7 @@
 		#hbContent > #headerLogo {height:70px; margin:5px 10px 5px 5px; cursor:pointer; justify-self:flex-start;}
 
 		#hbContent > #headerLinks {margin:5px 5px 5px auto; justify-self:flex-end; color:white; display:flex; flex-flow:row;}
-			#hbContent > #headerLinks > a {margin:0px; margin-left:auto; padding:15px; font-weight:bold; transition:0.5s; font-size:20px;}
+			#hbContent > #headerLinks > a {margin:0px; margin-left:auto; padding:15px; font-weight:bold; transition:0.5s; font-size:20px; color: white; text-decoration: none;}
 				#hbContent > #headerLinks > a:hover {color:#FFC857; scale:1.03; cursor:pointer;}
 				#hbContent > #headerLinks > a > img {height:40px; margin-top:-5px; width:auto;}
 

@@ -13,7 +13,18 @@ h1,h2,h3 {
 h4{font-family: 'Lexend Deca',veranda; font-size:18px;}
 
 /* TEXT ELEMENTS */
-.container {width:100%; padding:20px; max-width:1500px; margin:20px auto 20px auto;}
+.container {width:100%; padding:20px; max-width:1500px; margin:20px auto 20px auto; position: relative; transition:0.5s;}
+	.container.centered {text-align: center;}
+	.container.filled {
+		border-radius: 20px; background-color: silver;
+	}
+
+	.container.selectable > a {position: absolute; top:0; left:0; width:100%; height:100%; opacity: 0;}
+		.container.selectable:hover {scale:1.02; background: rgb(173, 173, 173);}
+
+	@media screen and (max-width: 1500px) {
+		.container{width:calc(100% - 40px); margin: 20px 20px 20px 20px;}		
+	}
 
 .titleBar {width:100%; background: midnightblue; padding: 20px; color:white; text-align:center;}
 	.titleBar.silver {background:silver; color:black;}
@@ -21,7 +32,7 @@ h4{font-family: 'Lexend Deca',veranda; font-size:18px;}
 .columnContainer{
 	display: flex; flex-flow: row; margin:0; padding:0;
 }
-	.columnContainer > img {display:block; width:45%; border-radius: 10px; object-fit: cover; align-self: stretch;}
+	.columnContainer > img {display:block; width:45%; border-radius: 20px; object-fit: cover; align-self: stretch;}
 		.columnContainer.wide > img {width: 50%;}
 	.columnContainer > div {display:block; width:55%; align-self: center; margin:0px 0px 0px 30px;}
 		.columnContainer.wide > div {width: 50%;}
@@ -45,11 +56,46 @@ h4{font-family: 'Lexend Deca',veranda; font-size:18px;}
 
 .spacer {width:calc(100% - 40px); max-width:1500px; margin:10px auto 10px auto;
 		height:1px; border-bottom:2px solid silver;}
+	.spacer.noMargin {width:100%;}
+	.spacer.dark {border-color: dimgray;}
 
 .section {width:100%; background:silver; color:black; margin:20px 0px 20px 0px; padding:20px 0px 20px 0px;}
 	.section.blue{background:midnightblue; color:white;}
 
-img.inline {display:block; width:100%; margin:20px auto 20px auto; max-width:400px; height:auto; border-radius:10px;}
+img.inline {display:block; width:100%; margin:20px auto 20px auto; max-width:400px; height:auto; border-radius: 20px;}
+
+.itemContainer {
+		display:flex; flex-flow:row; flex-wrap: wrap;
+		justify-content: flex-start;
+	}
+		.itemContainer > div {
+			width:calc(33% - 20px); border:1px solid black; border-radius: 20px;
+			margin:0px 10px 20px 10px; align-self:stretch; transition: 0.5s;
+			position:relative;
+		}
+			.itemContainer > div:hover {background-color: silver; scale:1.02;}
+			.itemContainer > div > img {width:100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 9px 9px 0px 0px;}
+			.itemContainer > div > div {padding:10px;}
+			.itemContainer > div > a {position: absolute; top:0; right:0; left:0; bottom:0; opacity: 0;}
+			.itemContainer > div > div > h3 {margin: 0px 0px 10px 0px;}
+			.itemContainer > div .hero {position: absolute; top:0; left:0; border-radius: 9px 0px 9px 0px; background: silver; padding:2px 5px 2px 5px;}
+
+		@media screen and (max-width:600px){
+			.itemContainer > div {width:100%;}
+		}
+	/* Use: <div class='itemContainer'>
+				<div>
+					<img src=''>
+					<div>
+						<h3>item_name</h3>
+						item_description
+					</div>
+					<span class='hero'>hero_text</div>
+					<a href=''></a>
+				</div>
+			</div>
+
+	*/
 
 /* SLIDESHOWS */
 .slideshowContainer {
@@ -58,7 +104,7 @@ img.inline {display:block; width:100%; margin:20px auto 20px auto; max-width:400
 	}
 		.slideshowContainer.wide {aspect-ratio: 16/9; max-width: 1500px;}
 		.slideshowContainer > img {position:absolute; top:0; right:0; width:100%; height:100%;
-			object-fit:cover; transition: 0.5s; border-radius: 10px;
+			object-fit:cover; transition: 0.5s; border-radius: 20px;
 			opacity:0; pointer-events:none;
 		}
 			.slideshowContainer > img.selected {opacity:1; pointer-events: initial;}
@@ -84,7 +130,7 @@ img.inline {display:block; width:100%; margin:20px auto 20px auto; max-width:400
 
 
 /* UI ELEMENTS */
-a.btn {display:inline-block; border-radius:10px; padding:5px 10px 5px 10px; transition:0.5s;
+a.btn {display:inline-block; border-radius: 20px; padding:5px 10px 5px 10px; transition:0.5s;
 	color:midnightBlue; border:2px solid midnightBlue; margin:0px 10px 0px 10px; text-decoration: none;}
 	a.btn:hover{background:midnightblue; color:white;}
 	a.btn.filled {background:midnightblue; color:white;}
@@ -97,3 +143,12 @@ a.btn.gold, a.btn.gold.filled:hover {border:2px solid #FFC857; color:#FFC857; ba
 
 a.btn.cyan, a.btn.cyan.filled:hover {border:2px solid #3EC9C4; color:#3EC9C4; background: inherit;}
 	a.btn.cyan:hover, a.btn.cyan.filled{background:#3EC9C4; color:white;}	
+
+.linksContainer > a {
+		padding:5px 10px 5px 10px; margin:10px 20px 10px 0px; border-radius: 20px; text-decoration: none; display: inline-block;
+		background: #3EC9C4; color:white;
+	}
+	.linksContainer.light > a {background: white; color:black;}
+	.linksContainer.gold > a {background:#FFC857; color:black;}
+	.linksContainer.transparent > a {background: rgba(255, 255, 255, 0.6); color:white;}
+	.linksContainer.silver > a {background: silver; color:black;}

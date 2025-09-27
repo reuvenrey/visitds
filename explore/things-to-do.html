@@ -1,23 +1,164 @@
 <!DOCTYPE html> <html lang="en">
     <head id='pgHead'>
-	    <!-- Load in initial style sheet --> <link rel='stylesheet' href='../files/setup/header/headerStyle.css'>
+	    <!-- Load in initial style sheets --> 
+		 <link rel='stylesheet' href='../files/setup/header/headerStyle.css'>
+		 <link rel="stylesheet" href="../files/setup/styleSheet.css">
 	    
 		<title>Things to Do | Visit Desert Springs</title> <!-- Dont Forget the page title!! -->
     </head>
 
 <body onload='finishLoad()'> <div id='pgLoader'></div><div id='pgHeader'></div>
 
-		<style></style>
+		<style>
+			#places-list h3 {font-size: 25px;}
+			.filterContainer {display:flex; flex-flow: row;}
+				.filterContainer > a {width:20%; padding:10px; align-self: stretch; cursor: cell;}
+				.filterContainer > a > img {width:100%; height:auto; display:block; margin-bottom: 10px;}
+				.filterContainer > a.selected {cursor: pointer;}
+					.filterContainer > a.selected > img {border: 5px solid gold; border-radius: 50%;}
+
+				@media screen and (max-width:1400px){
+					.filterContainer {flex-wrap: wrap;}
+				}
+				@media screen and (max-width:699px){
+					.filterContainer > a > img {display:none;}
+					.filterContainer > a.selected {border: 5px solid gold; border-radius: 10px;}
+					.filterContainer > a {font-weight: bold; min-width:200px;}
+				}
+			#places-list img {aspect-ratio: 16/9; object-fit: cover;}
+		</style>
 
 		<!-- BODY CONTENT HERE -->
 
 		<div class="titleBar"><h1>Explore Desert Springs</h1>Things to Do</div>
-        <div class="container"></div>
-		
+
+		<div class="container filled centered">
+			<h2>Filter by Category</h2>
+			<div class="filterContainer" id="catfilters">
+				<a>
+					<img src="../files/images/icons/categoryIcon-0.png">
+					Hotels & Resorts
+				</a>
+			</div>
+			<p id="applyFilterBtn" style="display:none;"><a class='btn' style="cursor: pointer;" onclick="viewFilteredElements();">Apply Filters</a></p>
+			<!--<p><a href="things-to-do.html?category=none">Clear Filters</a></p>-->
+		</div>
+
+		<div class="container centered" id="items-displayed">
+			
+		</div>
+
+		<div class="container" id="places-list">
+			<div class="container filled selectable">
+				<div class="columnContainer">
+					<img src="../files/images/placeholder.jpg">
+					<div>
+						<h3>Grindr Stadium</h3>
+						A large indoor sports and entertainment complex in the heart of the Entertainment District.
+						<p style="color:midnightblue; font-weight: bold;">Sports & Entertainment, Cool Places</p>
+						<div class="spacer noMargin dark"></div>
+						<div class="linksContainer light">
+							<a>📍 <em>Desert City, Desert Springs</em></a>
+							<a>🧍 <em>Fun for Everyone</em></a>
+						</div>
+					</div>
+				</div>
+				<a href="places?l=grindr-stadium"></a>
+			</div>
+		</div>
+
+		<!--
+        <div class="container">
+			<div class="itemContainer" id="places-list">
+				<div>
+					<img src="https://i.imgur.com/NCyozNl.jpeg">
+					<div>
+						<h3>Item Name</h3>
+						Item Description
+						<div class="spacer"></div>
+						<p>
+							📍 <em>Desert City, Desert Springs</em>
+							<br>
+							🧍 <em>Fun for Everyone</em>
+						</p>
+					</div>
+					<span class="hero">🏛️ Banner Element</span>
+					<a href="../index.html"></a>
+				</div>
+
+				<div>
+					<img src="https://i.imgur.com/NCyozNl.jpeg">
+					<div>
+						<h3>Item Name</h3>
+						Item Description
+						<div class="spacer"></div>
+						<p>
+							📍 <em>Desert City, Desert Springs</em>
+							<br>
+							🧍 <em>Fun for Everyone</em>
+						</p>
+					</div>
+					<span class="hero">🏛️ Banner Element</span>
+					<a href="../index.html"></a>
+				</div>
+
+				<div>
+					<img src="https://i.imgur.com/NCyozNl.jpeg">
+					<div>
+						<h3>Item Name</h3>
+						Item Description
+						<div class="spacer"></div>
+						<p>
+							📍 <em>Desert City, Desert Springs</em>
+							<br>
+							🧍 <em>Fun for Everyone</em>
+						</p>
+					</div>
+					<span class="hero">🏛️ Banner Element</span>
+					<a href="../index.html"></a>
+				</div>
+
+				<div>
+					<img src="https://i.imgur.com/NCyozNl.jpeg">
+					<div>
+						<h3>Item Name</h3>
+						Item Description
+						<div class="spacer"></div>
+						<p>
+							📍 <em>Desert City, Desert Springs</em>
+							<br>
+							🧍 <em>Fun for Everyone</em>
+						</p>
+					</div>
+					<span class="hero">🏛️ Banner Element</span>
+					<a href="../index.html"></a>
+				</div>
+
+				<div>
+					<img src="https://i.imgur.com/NCyozNl.jpeg">
+					<div>
+						<h3>Item Name</h3>
+						Item Description
+						<div class="spacer"></div>
+						<p>
+							📍 <em>Desert City, Desert Springs</em>
+							<br>
+							🧍 <em>Fun for Everyone</em>
+						</p>
+					</div>
+					<span class="hero">🏛️ Banner Element</span>
+					<a href="../index.html"></a>
+				</div>
+			</div>
+		</div>
+	-->
+
 		<!-- END OF BODY CONTENT -->
 
 	<div id='pgFooter'></div>
 </body>
     <!-- Load and run script to setup header and footer --> <script src="../files/setup/header/headerScript.js"></script>
 	<!-- Link any additional scripts below : <script src='script_src_link'></script> -->
+	<script src="../files/repositories/places.js"></script>
+	<script src="../files/scripts/places-page-script.js"></script>
 </html>
