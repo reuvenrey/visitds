@@ -63,6 +63,74 @@ prices = [
 
 // PLACES OF DESERT SPRINGS
 
+iter+=1;places[iter] = { // LUCKY RED CASINO
+  name:"Lucky Red Casino", siteLink:"lucky-red-casino",
+  shortDescription: "A historic Casino with a large selection of roulette, blackjack, and other games under a roof full of chandeliers. Located on West Ave. and Neon Blvd.",
+  coverImg: "https://i.imgur.com/y9JOLml.png",
+  categories: [1], age:"3", price:"0",
+  tags: "Historic,Indoor",
+  location:"Entertainment District, Desert City"
+}
+  placeDetails[iter] = {
+    slideShowLinks: ["https://i.imgur.com/OkgGVHb.png", "https://i.imgur.com/tGWPonw.png", 'https://i.imgur.com/RyeyQ22.png'], // put 'none' if none
+    externalLink: "externalLink", // put 'none' if none
+    accessibility: ['Wheelchair Accessible', 'Service Animals Allowed', 'etc'],
+    contactInfo: ['mailingAddress', 'emailAddress', 'phoneNumber'], // put 'none' if Not Available for any item
+    dateEstablished: "MMMM-DD-YYYY",
+    longDescription: "longDescription" // remember, if you want an inline img, use <img class='inline' src=''>
+  }
+
+iter+=1;places[iter] = { // NAME
+  name:"The Hungry Bookworm", siteLink:"the-hungry-bookworm",
+  shortDescription: "A sprawling bookstore on the first floor, and a classy speakeasy on the second",
+  coverImg: "https://i.imgur.com/5WJqeFL.png",
+  categories: [2,8], age:"3", price:"2",
+  tags: "Speakeasy,Bar,Lounge,Cocktails,Bookstore,Library",
+  location:"The Alley, Desert City"
+}
+  placeDetails[iter] = {
+    slideShowLinks: ['https://i.imgur.com/OXJgujd.png', 'https://i.imgur.com/Y3NyMCL.png', 'https://i.imgur.com/kp0Bo8W.png', 'https://i.imgur.com/pY1K6Iz.png'], // put 'none' if none
+    externalLink: "externalLink", // put 'none' if none
+    accessibility: ['Wheelchair Accessible', 'Service Animals Allowed', 'etc'],
+    contactInfo: ['mailingAddress', 'emailAddress', 'phoneNumber'], // put 'none' if Not Available for any item
+    dateEstablished: "MMMM-DD-YYYY",
+    longDescription: "longDescription" // remember, if you want an inline img, use <img class='inline' src=''>
+  }
+
+iter+=1;places[iter] = { // NAME
+  name:"The Torchlight Theater", siteLink:"torchlight-theater",
+  shortDescription: "A classic maximalist theater rooted in the history of Desert Springs arts and culture",
+  coverImg: "https://i.imgur.com/XPbbuGz.png",
+  categories: [3,4,8], age:"0", price:"1",
+  tags: "musical,historic,the alley",
+  location:"The Alley, Desert City"
+}
+  placeDetails[iter] = {
+    slideShowLinks: ['https://i.imgur.com/57VRjdZ.png', 'https://i.imgur.com/F40wAu7.png', 'https://i.imgur.com/QEBkrEK.png', 'https://i.imgur.com/oLGZaiv.png'], // put 'none' if none
+    externalLink: "externalLink", // put 'none' if none
+    accessibility: ['Wheelchair Accessible', 'Service Animals Allowed', 'etc'],
+    contactInfo: ['mailingAddress', 'emailAddress', 'phoneNumber'], // put 'none' if Not Available for any item
+    dateEstablished: "MMMM-DD-YYYY",
+    longDescription: "longDescription" // remember, if you want an inline img, use <img class='inline' src=''>
+  }
+
+iter+=1;places[iter] = { // NAME
+  name:"Infinity Casino & BJs", siteLink:"infinity-casino",
+  shortDescription: "The world's largest BJs restaurant and brewhouse nestled inside a multi-story Casino Resort with rooftop pool deck",
+  coverImg: "https://i.imgur.com/G9B01BQ.png",
+  categories: [0,1,2], age:"0", price:"2",
+  tags: "tag1,tag2,etc",
+  location:"Entertainment District, Desert City"
+}
+  placeDetails[iter] = {
+    slideShowLinks: ['link1', 'link2'], // put 'none' if none
+    externalLink: "externalLink", // put 'none' if none
+    accessibility: ['Wheelchair Accessible', 'Service Animals Allowed', 'etc'],
+    contactInfo: ['mailingAddress', 'emailAddress', 'phoneNumber'], // put 'none' if Not Available for any item
+    dateEstablished: "MMMM-DD-YYYY",
+    longDescription: "longDescription" // remember, if you want an inline img, use <img class='inline' src=''>
+  }
+
 iter+=1;places[iter] = { // GRINDR STADIUM
   name:"Grindr Stadium", siteLink:"grindr-stadium",
   shortDescription: "A premier indoor arena hosting concerts, sports, and the annual Golden City Awards.",
@@ -90,24 +158,6 @@ iter+=1;places[iter] = { // NEON - WEST
 }
   placeDetails[iter] = {
     slideShowLinks: ['none'], // put 'none' if none
-    externalLink: "externalLink", // put 'none' if none
-    accessibility: ['Wheelchair Accessible', 'Service Animals Allowed', 'etc'],
-    contactInfo: ['mailingAddress', 'emailAddress', 'phoneNumber'], // put 'none' if Not Available for any item
-    dateEstablished: "MMMM-DD-YYYY",
-    longDescription: "longDescription" // remember, if you want an inline img, use <img class='inline' src=''>
-  }
-
-
-iter+=1;places[iter] = { // LUCKY RED CASINO
-  name:"Lucky Red Casino", siteLink:"lucky-red-casino",
-  shortDescription: "A historic Casino with a large selection of roullette, blackjack, and other games under a roof full of chandeliers. Located on West Ave. and Neon Blvd.",
-  coverImg: "../files/images/placeholder.jpg",
-  categories: [1], age:"3", price:"0",
-  tags: "Historic,Indoor",
-  location:"Entertainment District, Desert City"
-}
-  placeDetails[iter] = {
-    slideShowLinks: ["../files/images/placeholder.jpg", "../files/images/placeholder.jpg"], // put 'none' if none
     externalLink: "externalLink", // put 'none' if none
     accessibility: ['Wheelchair Accessible', 'Service Animals Allowed', 'etc'],
     contactInfo: ['mailingAddress', 'emailAddress', 'phoneNumber'], // put 'none' if Not Available for any item
