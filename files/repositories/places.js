@@ -123,7 +123,7 @@ iter+=1;places[iter] = { // NAME
   location:"Entertainment District, Desert City"
 }
   placeDetails[iter] = {
-    slideShowLinks: ['link1', 'link2'], // put 'none' if none
+    slideShowLinks: ['https://i.imgur.com/YrAqOEF.png', 'https://i.imgur.com/qvAlxgs.png', 'https://i.imgur.com/eTuEFTX.png'], // put 'none' if none
     externalLink: "externalLink", // put 'none' if none
     accessibility: ['Wheelchair Accessible', 'Service Animals Allowed', 'etc'],
     contactInfo: ['mailingAddress', 'emailAddress', 'phoneNumber'], // put 'none' if Not Available for any item
@@ -151,15 +151,15 @@ iter+=1;places[iter] = { // GRINDR STADIUM
 iter+=1;places[iter] = { // NEON - WEST
   name:"Neon West", siteLink:"neon-west",
   shortDescription: "A colorful shopping & entertainment metroplex featuring a deluxe 4D cinema, shops, restaurants, and family hotel",
-  coverImg: "../files/images/placeholder.jpg",
+  coverImg: "https://i.imgur.com/e6y8AEn.png",
   categories: [0,4,5], age:"0", price:"0",
   tags: "Mall,Cinema,Movies,Aquarium,Indoor",
   location:"Entertainment District, Desert City"
 }
   placeDetails[iter] = {
-    slideShowLinks: ['none'], // put 'none' if none
-    externalLink: "externalLink", // put 'none' if none
-    accessibility: ['Wheelchair Accessible', 'Service Animals Allowed', 'etc'],
+    slideShowLinks: ['https://i.imgur.com/QlCyRzj.png','https://i.imgur.com/zaD5nyA.png', 'https://i.imgur.com/NRB3jgT.png', 'https://i.imgur.com/HBWOnAQ.png'], // put 'none' if none
+    externalLink: "none", // put 'none' if none
+    accessibility: ['Wheelchair Accessible', 'Service Animals Allowed', 'MDA Ramps and Elevators'],
     contactInfo: ['mailingAddress', 'emailAddress', 'phoneNumber'], // put 'none' if Not Available for any item
     dateEstablished: "MMMM-DD-YYYY",
     longDescription: "longDescription" // remember, if you want an inline img, use <img class='inline' src=''>
