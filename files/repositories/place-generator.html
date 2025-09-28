@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head id='pgHead'>
+    <link rel='stylesheet' href='../../files/setup/header/headerStyle.css'>
+    <link rel="stylesheet" href="../../files/setup/styleSheet.css">
+  <meta charset="UTF-8">
+  <title>Desert Springs Place Generator</title>
+  <style>
+    .mainBody { font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; }
+    h2 { margin-top: 30px; }
+    textarea, input, select { width: 100%; padding: 8px; margin: 5px 0; }
+    button { padding: 10px 20px; margin: 15px 0; cursor: pointer; }
+    pre { background: #f4f4f4; padding: 10px; border-radius: 6px; white-space: pre-wrap; }
+  </style>
+</head>
+<body onload='finishLoad();'> <div id='pgLoader'></div><div id='pgHeader'></div>
+
+<div class="mainBody">
+  <h1>Desert Springs Place Generator</h1>
+  <form id="placeForm">
+    <h2>Basic Info</h2>
+    <label>Place Name (Grindr Stadium): <input type="text" id="name"></label>
+    <label>Site Link (grindr-stadium): <input type="text" id="siteLink"></label>
+    <label>Short Description: <textarea id="shortDescription"></textarea></label>
+    <label>Cover Image URL: <input type="text" id="coverImg"></label>
+
+    <div class="container">
+        <h3>Categories</h3>
+            <ol start="0" style="display:inline-block; width:45%;">
+                <li>Hotels & Resorts</li>
+                <li>Casinos</li>
+                <li>Restaurants</li>
+                <li>Attractions / Landmarks</li>
+                <li>Shows & Entertainment</li>
+            </ol>
+            <ol start="5" style="display: inline-block; width:45%">
+                <li>Shopping</li>
+                <li>Wellness / Relaxation</li>
+                <li>Outdoor Activities</li>
+                <li>Culture & Nightlife</li>
+                <li>Family Fun</li>
+            </ol>
+    </div>
+    <label>Categories (comma-separated numbers) [1,2,3]: 
+        <input type="text" id="categories">
+    </label>
+    
+    <div class="container">
+        <h3>Age Index</h3>
+            <ol start="0" style="display:inline-block; width:45%;">
+                <li>All Ages</li>
+                <li>Ages 12+</li>
+                <li>Ages 18+</li>
+            </ol>
+            <ol start="3" style="display: inline-block; width:45%">
+                <li>Ages 21+</li>
+                <li>Mature Audiences Only</li>
+            </ol>
+    </div>
+    <label>Age Index (1): <input type="text" id="age"></label>
+
+    <div class="container">
+        <h3>Price Range</h3>
+            <ol start="0" style="display:inline-block; width:45%;">
+                <li>$ - Budget</li>
+                <li>$$ - Moderate</li>
+            </ol>
+            <ol start="2" style="display: inline-block; width:45%">
+                <li>$$$ - Expensive</li>
+                <li>$$$$ - Luxury</li>
+            </ol>
+    </div>
+    <label>Price Index <em>(1)</em>: <input type="text" id="price"></label>
+
+    <label>Tags (comma-separated) (<em>Sports,Indoor,Arena,Idol Awards</em>): <input type="text" id="tags"></label>
+    <label>Location: <em>District, City</em><input type="text" id="location"></label>
+
+    <h2>Detailed Info</h2>
+    <label>Slideshow Links (comma-separated or none): <input type="text" id="slideShowLinks"></label>
+    <label>External Link (or none): <input type="text" id="externalLink"></label>
+    <label>Accessibility (comma-separated): <input type="text" id="accessibility"></label>
+    <label>Contact Info (address,email,phone — use none for unavailable): <input type="text" id="contactInfo"></label>
+    <label>Date Established (MMMM-DD-YYYY): <input type="text" id="dateEstablished"></label>
+    <label>Long Description: <textarea id="longDescription" style="min-height: 400px;"></textarea></label>
+    <p>
+      <b>Reference</b>
+      <ul>
+        <li>For new lines and paragraphs: &lt;p&gt;&lt;/p&gt;</li>
+        <li>For inline images and captions: &lt;img class='inline'&gt; &lt;p class='caption'&gt;&lt;/p&gt;</li>
+      </ul>
+    </p>
+    <button type="button" onclick="generateCode()">Generate Code</button>
+  </form>
+
+  <h2>Generated Code</h2>
+  <pre id="output"></pre>
+  
+</div>
+<div id='pgFooter'></div>
+
+
+ <script>
+  let iter = 0;
+
+  function escapeString(str) {
+    return str
+        .replace(/[\r\n]+/g, "") // remove all line breaks
+        .replace(/\\/g, "\\\\")  // escape backslashes
+        .replace(/"/g, '\\"');   // escape double quotes
+  }
+
+  function generateCode() {
+    iter++;
+
+    const name = escapeString(document.getElementById('name').value);
+    const siteLink = escapeString(document.getElementById('siteLink').value);
+    const shortDescription = escapeString(document.getElementById('shortDescription').value);
+    const coverImg = escapeString(document.getElementById('coverImg').value);
+    const categories = document.getElementById('categories').value.split(',').map(s => s.trim());
+    const age = escapeString(document.getElementById('age').value);
+    const price = escapeString(document.getElementById('price').value);
+    const tags = escapeString(document.getElementById('tags').value);
+    const location = escapeString(document.getElementById('location').value);
+
+    const slideShowLinksInput = document.getElementById('slideShowLinks').value.trim();
+    const slideShowLinks = slideShowLinksInput === 'none'
+      ? '["none"]'
+      : JSON.stringify(slideShowLinksInput.split(',').map(s => escapeString(s.trim())));
+    const externalLink = escapeString(document.getElementById('externalLink').value);
+    const accessibility = JSON.stringify(document.getElementById('accessibility').value.split(',').map(s => escapeString(s.trim())));
+    const contactInfo = JSON.stringify(document.getElementById('contactInfo').value.split(',').map(s => escapeString(s.trim())));
+    const dateEstablished = escapeString(document.getElementById('dateEstablished').value);
+    const longDescription = escapeString(document.getElementById('longDescription').value);
+
+    const code = 
+`iter+=1;places[iter] = {
+  name:"${name}", siteLink:"${siteLink}",
+  shortDescription: "${shortDescription}",
+  coverImg: "${coverImg}",
+  categories: [${categories.join(', ')}], age:"${age}", price:"${price}",
+  tags: "${tags}",
+  location:"${location}"
+}
+placeDetails[iter] = {
+  slideShowLinks: ${slideShowLinks},
+  externalLink: "${externalLink}",
+  accessibility: ${accessibility},
+  contactInfo: ${contactInfo},
+  dateEstablished: "${dateEstablished}",
+  longDescription: "${longDescription}"
+}`;
+
+    document.getElementById('output').textContent = code;
+  }
+</script>
+</body>
+ <!-- Load and run script to setup header and footer --> <script src="../../files/setup/header/headerScript.js"></script>
+</html>

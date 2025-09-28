@@ -3,15 +3,35 @@
 
 	#pgHeader > #headerBar {position:fixed; top:0; width:100%;
 	             height:80px; margin:0; background:linear-gradient(midnightblue,black);
+				 z-index:998;
 	           }
 		
 		#pgHeader > #headerBar > #hbContent {width:100%; max-width:1500px; margin:0px auto 0px auto; display:flex; flex-flow:row;}
 		#hbContent > #headerLogo {height:70px; margin:5px 10px 5px 5px; cursor:pointer; justify-self:flex-start;}
 
-		#hbContent > #headerLinks {margin:5px 5px 5px auto; justify-self:flex-end; color:white; display:flex; flex-flow:row;}
+		#hbContent > #headerLinks {margin:5px 5px 5px auto; justify-self:flex-end; color:white; display:flex; flex-flow:row; align-items: stretch;}
 			#hbContent > #headerLinks > a {margin:0px; margin-left:auto; padding:15px; font-weight:bold; transition:0.5s; font-size:20px; color: white; text-decoration: none;}
 				#hbContent > #headerLinks > a:hover {color:#FFC857; scale:1.03; cursor:pointer;}
 				#hbContent > #headerLinks > a > img {height:40px; margin-top:-5px; width:auto;}
+
+	span.cursive {font-family: Corinthia; display:inline-block; transform: scale(1.5); margin:0px 6px 0px 6px}
+	.hbMenu {
+		position: fixed; top:80px; right:0; z-index:995; width:570px; padding:20px 10px 20px 10px;
+		background: linear-gradient(rgb(7, 0, 66),rgb(7, 0, 66),rgba(7, 0, 66, 0.6)); color:white; border-bottom: 2px solid black; border-left: 2px solid black; border-radius: 0px 0px 0px 20px; 
+		transition:0.5s;
+	}
+		.hbMenu.hidden {opacity: 0; pointer-events: none; right:-100%;}
+
+	.hbBoldLinks > a {display:block; font-size: 20px; font-weight: bold; margin:5px 0px 10px 0px; transition: 0.5s; color:#efefef; text-decoration: none;}
+		.hbBoldLinks > a:hover {scale: 1.04; color:goldenrod; margin: 5px 0px 10px 10px;}
+
+	.hbmIcon {position: absolute; top:5px; right:5px; height:90%; aspect-ratio: 1/1; object-fit: cover; transition:0.5s;  filter: grayscale(100%) brightness(600%);}
+		.hbmIcon.hidden {right:-100%; transform: rotate(180deg);}
+
+	.hbSideMenu {position:fixed; top:80px; right:0; z-index: 995; width:400px; padding: 20px 10px 10px 20px; height:calc(100vh - 80px); overflow-y: auto;
+		background: linear-gradient(rgb(7, 0, 66),rgb(7, 0, 66),rgba(7, 0, 66, 0.6)); border-left: 2px solid black; transition: 0.5s;
+	}
+		.hbSideMenu.hidden {opacity:0; pointer-events: none; right:-100%;}
 
 /* FOOTER */
 #pgFooter {width:100%; padding:10px; background:linear-gradient(midnightblue,black); color:silver;}

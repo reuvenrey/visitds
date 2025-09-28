@@ -29,6 +29,18 @@ if(placeInfo == false){
         document.getElementById('altBannerContents').innerHTML = "<img src='"+placeInfo.coverImg+"'><div><h2>"+placeInfo.name+"</h2>"+placeInfo.shortDescription+"<p></p>\
         <div class='spacer noMargin'></div><div class='linksContainer transparent'><a>📍 "+placeInfo.location+"</a> <a>🧍 "+ages[placeInfo.age]+"</a> <a>💵 "+prices[placeInfo.price]+"</a></div></div>";
 
+    // Populate main details section
+    document.getElementById('pgContent').innerHTML = placeDetail.longDescription;
+
+    // Important Info
+    var mdaInfo = "<b>Accessibility: </b> " + placeDetail.accessibility[0];
+    if(placeDetail.accessibility.length > 1){
+        for(m=1; m<placeDetail.accessibility.length; m++){
+            mdaInfo += ", " + placeDetail.accessibility[m];
+        }   
+    }
+    document.getElementById('accessibilityInfo').innerHTML = mdaInfo;
+
     // Create page slideshow (if applicable)
         if(placeDetail.slideShowLinks[0] != 'none'){
             document.getElementById('pgSlideshow').innerHTML = "<div class='spacer'></div><div class='container'><div class='slideshowContainer' id='mainSlideshow'></div><div class='slideshowControls'></div></div>"
@@ -40,7 +52,7 @@ if(placeInfo == false){
     // Explore similar categories
         const similarCategories = document.getElementById('similarCategories');
         for(i=0; i<placeInfo.categories.length; i++){
-            similarCategories.innerHTML += "<a href='things-to-do?categories="+placeInfo.categories[i]+"' class='btn gold filled'>Explore "+categories[placeInfo.categories[i]]+"</a>";
+            similarCategories.innerHTML += "<a href='things-to-do.html?categories="+placeInfo.categories[i]+"' class='btn gold filled'>Explore "+categories[placeInfo.categories[i]]+"</a>";
         }
 
     // Attraction tags

@@ -164,3 +164,20 @@ iter+=1;places[iter] = { // NEON - WEST
     dateEstablished: "MMMM-DD-YYYY",
     longDescription: "longDescription" // remember, if you want an inline img, use <img class='inline' src=''>
   }
+
+iter+=1;places[iter] = {
+  name:"Arrow", siteLink:"arrow-club",
+  shortDescription: "A trendy nightclub anchoring The Alley on West Avenue featuring three floors of nonstop energy and good vibes.",
+  coverImg: "https://reuvenrey.github.io/visitds/files/images/placeholder.jpg",
+  categories: [8], age:"2", price:"0",
+  tags: "Nightclub,Dancing,EDM,House,Country,Straight,Club",
+  location:"Entertainment District, Desert City"
+}
+placeDetails[iter] = {
+  slideShowLinks: ['none'],
+  externalLink: "none",
+  accessibility: ["Wheelchair Accessible","MDA Restroom"],
+  contactInfo: ["none"],
+  dateEstablished: "September-25-2025",
+  longDescription: "Arrow isn’t just a nightclub—it’s an experience stacked high. Located in the heart of the Entertainment District, Arrow brings together three distinct atmospheres under one roof.<p>The ground floor pulses with chart-topping EDM and dazzling lights that set the tone for the night. Ascend to the second floor and you’ll find a sleek lounge with house and hip-hop rhythms, perfect for dancing or conversation. Finally, the rooftop deck offers panoramic views of the neon skyline, with cocktails flowing and a more relaxed vibe under the desert stars.</p><p>Whether you’re chasing high-energy beats, a chic social setting, or a rooftop escape, Arrow hits the mark.</p>"
+}
