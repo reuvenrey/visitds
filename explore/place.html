@@ -11,7 +11,16 @@
 
 <body onload='finishLoad();'> <div id='pgLoader'></div><div id='pgHeader'></div>
 
-		<style></style>
+		<style>
+            @media screen and (max-width:1000px) {
+                #pgBanner{display: none;}
+                #altBanner{display:block;}
+            }
+            @media screen and (min-width: 1001px) {
+                #pgBanner{display: block;}
+                #altBanner{display:none;}
+            }
+        </style>
 
 		<!-- BODY CONTENT HERE -->
 
@@ -21,6 +30,13 @@
                 <div class="container">
                     <h1>Name of Place</h1>
                     Short description of place
+                </div>
+            </div>
+        </div>
+
+        <div class="section blue" id="altBanner">
+            <div class="container">
+                <div class="columnContainer" id="altBannerContents">
                 </div>
             </div>
         </div>

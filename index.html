@@ -2,7 +2,7 @@
     <head id='pgHead'>
 	    <!-- Load in initial style sheet --> <link rel='stylesheet' href='files/setup/header/headerStyle.css'>
 		 <link rel="stylesheet" href="files/setup/styleSheet.css">
-	    
+	    <link href="https://fonts.googleapis.com/css2?family=Corinthia:wght@700&display=swap" rel="stylesheet">
 		<title>Explore Desert Springs | Fun, Action, Adventure!</title> <!-- Dont Forget the page title!! -->
     </head>
 
@@ -11,10 +11,12 @@
 		<style>
 			/* Custom header for index page only */
 			#indexHeader {position:fixed; top:0; z-index:997; width:100%; min-height:200px; background:linear-gradient(rgba(25, 25, 112,1),rgba(25, 25, 112,1),rgba(25, 25, 112,0)); transition:0.5s;}
-				#ihContent {width:100%; max-width:1500px; margin:20px auto 20px auto;}
+				#ihContent {width:100%; max-width:1500px; margin:20px auto 20px auto; display: flex;}
 				#ihContent > #ihLogo {width:25%; height:auto; max-width:300px;}
-				#ihContent .ihLink {}
-			@media screen and (max-width:1000px){
+				#ihContent .ihLinks {width:70%; display: flex; justify-content: flex-end; padding: 10px 0px 10px 20px; flex-wrap: wrap; align-items: flex-start;}
+					#ihContent .ihLinks > a {font-weight: bold; color:#FFC857; text-decoration: none; font-size: 25px; margin:10px 0px 10px 40px; transition: 0.5s; align-self: flex-start;}
+					#ihContent .ihLinks > a:hover {color:white; scale:1.04;}
+			@media screen and (max-width:1019px){
 				#indexHeader {display:none; pointer-events:none;}
 			}
 		</style>
@@ -24,7 +26,13 @@
 		<div id='indexHeader'>
 			<div id='ihContent'>
 				<img id='ihLogo' src='files/images/desertSpringsLogo.png'>
-				
+				<div class="ihLinks">
+					<a>Explore <span style="font-family: Corinthia; font-size: 30px;">DS</span></a>
+					<a href="explore/things-to-do">Things to Do</a>
+					<a href="explore/things-to-do?categories=0">Hotels & Resorts</a>
+					<a>Plan a Visit</a>
+					<input type="text" style="display:block; height: 50px; width:100%; max-width: 400px; align-self: flex-start; border-radius: 20px; font-size: 20px; margin-top: -70px; background: rgba(255,255,255,0.8);" placeholder="Type to Search">
+				</div>
 			</div>
 		</div>
 
@@ -32,9 +40,9 @@
 			<img src='https://travelnevada.com/wp-content/uploads/2020/09/Vegas_Desktop.jpg'>
 			<div class='overlay'>
 				<div>
-					<h1 style='font-size:60px; color:#FFC857; margin-bottom: 10px;'>WELCOME TO THE ADVENTURE</h1>
-					<p><h2 style="margin-top:0; font-weight: normal;">Where lights meet legends, and everyday is an adventure.</h2><br>
-					<a href='' class="btn gold filled">Plan Your Visit</a><a class="btn cyan filled">Explore Activities</a></p>
+					<h1 style='font-size:80px; color:#FFC857; margin-bottom:0px; font-family: Corinthia;'>Welcome to the Adventure!</h1>
+					<p style="margin-top:5px;"><h2 style="margin-top:0; font-weight: normal;">Where lights meet legends, and everyday is an adventure.</h2><br>
+					<a href='' class="btn gold filled">Plan Your Visit</a><a class="btn cyan filled" href="explore/things-to-do">Explore Activities</a></p>
 				</div>
 			</div>
 		</div>
@@ -63,7 +71,7 @@
 		// Run the above function everytime the window is resized
 		window.onresize = function(event) {
 	        // Your code to execute on window resize
-	        if(window.innerWidth <= 1000){
+	        if(window.innerWidth <= 1019){
 				document.getElementById("pgHeader").style.display = 'block'; // bring back standard header
 			}else{
 				document.getElementById("pgHeader").style.display = 'none'; // get rid of standard header

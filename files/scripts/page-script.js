@@ -25,6 +25,9 @@ if(placeInfo == false){
         <h1>"+placeInfo.name+"</h1>"+placeInfo.shortDescription+"<div class='container'>\
         <div class='linksContainer transparent'><a>📍 "+placeInfo.location+"</a> <a>🧍 "+ages[placeInfo.age]+"</a> <a>💵 "+prices[placeInfo.price]+"</a></div></div>\
         </div></div>";
+        // Populate alternate banner (for smaller screens)
+        document.getElementById('altBannerContents').innerHTML = "<img src='"+placeInfo.coverImg+"'><div><h2>"+placeInfo.name+"</h2>"+placeInfo.shortDescription+"<p></p>\
+        <div class='spacer noMargin'></div><div class='linksContainer transparent'><a>📍 "+placeInfo.location+"</a> <a>🧍 "+ages[placeInfo.age]+"</a> <a>💵 "+prices[placeInfo.price]+"</a></div></div>";
 
     // Create page slideshow (if applicable)
         if(placeDetail.slideShowLinks[0] != 'none'){
@@ -37,7 +40,7 @@ if(placeInfo == false){
     // Explore similar categories
         const similarCategories = document.getElementById('similarCategories');
         for(i=0; i<placeInfo.categories.length; i++){
-            similarCategories.innerHTML += "<a href='things-to-do?categories="+i+"' class='btn gold filled'>Explore "+categories[placeInfo.categories[i]]+"</a>";
+            similarCategories.innerHTML += "<a href='things-to-do?categories="+placeInfo.categories[i]+"' class='btn gold filled'>Explore "+categories[placeInfo.categories[i]]+"</a>";
         }
 
     // Attraction tags
