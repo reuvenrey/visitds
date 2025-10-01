@@ -155,4 +155,19 @@ placeDetails[iter] = {
 </script>
 </body>
  <!-- Load and run script to setup header and footer --> <script src="../../files/setup/header/headerScript.js"></script>
+
+<script> /* Warn User before leaving the page that changes will not be saved */
+    window.addEventListener("beforeunload", function (e) {
+      // Customize the message
+      const confirmationMessage = "You have unsaved changes. Are you sure you want to leave?";
+      
+      // Some browsers use returnValue
+      e.preventDefault();
+      e.returnValue = confirmationMessage;
+
+      // For compatibility (older browsers)
+      return confirmationMessage;
+    });
+</script>
+
 </html>

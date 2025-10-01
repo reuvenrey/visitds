@@ -99,6 +99,18 @@ img.inline {display:block; width:100%; margin:20px auto 20px auto; max-width:800
 
 	*/
 
+.halfContainer {
+	display: flex; flex-flow:row; margin:0px; padding:0px;
+}
+	.halfContainer > div {width:50%; padding-left:10px; align-self: stretch;}
+	.halfContainer > div:first-child {padding-left: 0px; padding-right: 10px;}
+
+	@media screen and (max-width:700px){
+		.halfContainer {flex-flow: column;}
+		.halfContainer > div {width:100%; padding-left:0px;}
+		.halfContainer > div:first-child {padding-left: 0px; padding-right: 0px;}
+	}
+
 /* SLIDESHOWS */
 .slideshowContainer {
 		display:block; width:100%; aspect-ratio: 16/10; max-width: 1000px;
@@ -154,3 +166,5 @@ a.btn.cyan, a.btn.cyan.filled:hover {border:2px solid #3EC9C4; color:#3EC9C4; ba
 	.linksContainer.gold > a {background:#FFC857; color:black;}
 	.linksContainer.transparent > a {background: rgba(255, 255, 255, 0.6); color:white;}
 	.linksContainer.silver > a {background: silver; color:black;}
+
+a {color:inherit;}

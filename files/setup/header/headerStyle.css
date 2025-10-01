@@ -22,13 +22,20 @@
 	}
 		.hbMenu.hidden {opacity: 0; pointer-events: none; right:-100%;}
 
+	@media screen and (min-width:1501px) {
+		.hbMenu {right:calc((100vw - 1500px)/2);
+			border:2px solid black; border-top: none;
+			border-radius: 0px 0px 20px 20px; 
+		}
+	}
+
 	.hbBoldLinks > a {display:block; font-size: 20px; font-weight: bold; margin:5px 0px 10px 0px; transition: 0.5s; color:#efefef; text-decoration: none;}
 		.hbBoldLinks > a:hover {scale: 1.04; color:goldenrod; margin: 5px 0px 10px 10px;}
 
 	.hbmIcon {position: absolute; top:5px; right:5px; height:90%; aspect-ratio: 1/1; object-fit: cover; transition:0.5s;  filter: grayscale(100%) brightness(600%);}
 		.hbmIcon.hidden {right:-100%; transform: rotate(180deg);}
 
-	.hbSideMenu {position:fixed; top:80px; right:0; z-index: 995; width:400px; padding: 20px 10px 10px 20px; height:calc(100vh - 80px); overflow-y: auto;
+	.hbSideMenu {position:fixed; top:80px; right:0; z-index: 995; width:90%; max-width:400px; padding: 20px 10px 10px 20px; height:calc(100vh - 80px); overflow-y: auto;
 		background: linear-gradient(rgb(7, 0, 66),rgb(7, 0, 66),rgba(7, 0, 66, 0.6)); border-left: 2px solid black; transition: 0.5s;
 	}
 		.hbSideMenu.hidden {opacity:0; pointer-events: none; right:-100%;}
