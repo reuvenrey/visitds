@@ -40,6 +40,9 @@ header.innerHTML = "<div id='headerBar'><div id='hbContent'></div> \
 // Populate the FOOTER
 footer.innerHTML = "<div id='footerContent'><p style='color:lightgray'>© 2025 Desert Springs Ministry of Recreation | Department of Tourism</p><p><a href='"+websiteLink+"files/repositories/place-generator.html'>Place Generator</a></p></div>";
 
+// Populate the loader
+pgLoader.innerHTML = "<img src='"+websiteLink+"files/images/siteIcon.ico'>";
+
 // Hide loading screen after page finished loading
 function finishLoad(){
     pgLoader.classList.add("hidden");
