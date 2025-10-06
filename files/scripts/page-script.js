@@ -15,7 +15,8 @@ for(i=0; i<places.length; i++){
 
 if(placeInfo == false){
     // item not found
-    console.log('Place Not Found')
+    console.log('Place Not Found');
+    document.getElementById('errorWindow').classList.add('shown');
 }else{
     // Create the page
     document.getElementById('pgTitle').innerHTML = placeInfo.name + " | Things to Do | Visit Desert Springs"; // set title of page

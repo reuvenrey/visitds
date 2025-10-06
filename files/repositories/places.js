@@ -114,21 +114,21 @@ iter+=1;places[iter] = { // NAME
     longDescription: "longDescription" // remember, if you want an inline img, use <img class='inline' src=''>
   }
 
-iter+=1;places[iter] = { // NAME
-  name:"Infinity Casino & BJs", siteLink:"infinity-casino",
-  shortDescription: "The world's largest BJs restaurant and brewhouse nestled inside a multi-story Casino Resort with rooftop pool deck",
+iter+=1;places[iter] = { // INFINITY CASINO AND BJS
+  name:"Infinity Casino & Resort", siteLink:"infinity-casino",
+  shortDescription: "A luxurious high-rise Casino & Hotel featuring the world's largest BJ's Restaurant and Brewhouse",
   coverImg: "https://i.imgur.com/G9B01BQ.png",
   categories: [0,1,2], age:"0", price:"2",
-  tags: "tag1,tag2,etc",
+  tags: "BJ's Restaurant and Brewhouse,Piezookie,Gambling,Resort,Hotel,Luxury Accomodations,Rooftop Pool,Gambler's Club",
   location:"Entertainment District, Desert City"
 }
   placeDetails[iter] = {
-    slideShowLinks: ['https://i.imgur.com/YrAqOEF.png', 'https://i.imgur.com/qvAlxgs.png', 'https://i.imgur.com/eTuEFTX.png'], // put 'none' if none
+    slideShowLinks: ['https://i.imgur.com/4yObJfi.png', 'https://i.imgur.com/qvAlxgs.png', 'https://i.imgur.com/HNscxC4.png', 'https://i.imgur.com/eTuEFTX.png'], // put 'none' if none
     externalLink: "externalLink", // put 'none' if none
     accessibility: ['Wheelchair Accessible', 'Service Animals Allowed', 'etc'],
     contactInfo: ['mailingAddress', 'emailAddress', 'phoneNumber'], // put 'none' if Not Available for any item
     dateEstablished: "MMMM-DD-YYYY",
-    longDescription: "longDescription" // remember, if you want an inline img, use <img class='inline' src=''>
+    longDescription: "<p>A dazzling fusion of excitement and elegance, the Infinity Casino & Resort delivers nonstop gaming, world-class luxurious accommodations, and the world’s largest BJ’s Restaurant & Brewhouse.</p><p>Guests can unwind at rooftop pools, indulge in spa treatments, and experience legendary hospitality — all steps away from the world’s largest BJ’s Restaurant & Brewhouse, where craft beer and California-inspired dishes keep the energy high from lunch through late night.</p><br><div class='spacer'></div><br><div class='columnContainer'><img src='https://i.imgur.com/HNscxC4.png'><div><h3>Brewhouse Brawesomness</h3>Spanning multiple stories with panoramic views of West Ave and the E-District, this flagship location takes everything guests love about BJ’s and scales it to Desert City proportions. This location also features one of our largest breweries for barrel-to-tap tastiness.</div></div><br><div class='spacer'></div><br><div class='columnContainer'><div><h3>Gaming & More</h3>Explore an expansive Casino featuring a multitude of gaming options as well as exclusive gamer's lounges for high-betters and willing winners.</div><img src='../files/images/placeholder.jpg'></div>"
   }
 
 iter+=1;places[iter] = { // GRINDR STADIUM
@@ -153,11 +153,11 @@ iter+=1;places[iter] = { // NEON-WEST
   shortDescription: "A colorful shopping & entertainment metroplex featuring a deluxe cinema with IMAX and 4D theaters, shops, restaurants, and a family hotel",
   coverImg: "https://i.imgur.com/NQzwpQ0.png",
   categories: [0, 2, 5], age:"0", price:"0",
-  tags: "Mall,Indoor,Movies,4D Cinema,Imax,Food Court",
+  tags: "Mall,Indoor,Movies,4D Cinema,Imax,Food Court,Movie Theater",
   location:"Entertainment District, Desert City"
 }
   placeDetails[iter] = {
-    slideShowLinks: ["https://i.imgur.com/ELKsMTW.png","https://i.imgur.com/HBWOnAQ.png","https://i.imgur.com/zaD5nyA.png","https://i.imgur.com/SXeX2Ls.png","https://i.imgur.com/HdVm507.png"],
+    slideShowLinks: ["https://i.imgur.com/ELKsMTW.png","https://i.imgur.com/HBWOnAQ.png","https://i.imgur.com/zaD5nyA.png",'https://i.imgur.com/lGOV0uR.png',"https://i.imgur.com/SXeX2Ls.png"],
     externalLink: "none",
     accessibility: ["Wheelchair Accessible","Service Animals Allowed (mall only)"],
     contactInfo: ["none"],

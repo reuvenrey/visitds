@@ -20,9 +20,29 @@
                 #pgBanner{display: block;}
                 #altBanner{display:none;}
             }
+
+            #errorWindow {
+                position: fixed;
+                top:80px; bottom:0; width:100%;
+                background: linear-gradient(45deg,rgb(39, 39, 148),rgb(8, 8, 82));
+                display: none; z-index: 999; color:white;
+            }
+            #errorWindow.shown {
+                display:block;
+                display: flex; align-items: center; justify-content: center;
+            }
         </style>
 
 		<!-- BODY CONTENT HERE -->
+
+        <div id="errorWindow">
+            <div>
+                <h1>Oh Dear...</h1>
+                It appears you've run into an error. The place you're looking for is missing!
+                <p>Please navigate back to the previous page and try again.</p>
+                <a class="btn gold noLeft" onclick="history.back();">Go Back</a>
+            </div>
+        </div>
 
 		<div class="banner" id="pgBanner">
             <img src="../files/images/placeholder.jpg">

@@ -62,11 +62,21 @@ function startSsAuto(){
 const controls = document.querySelector(".slideshowControls");
 
 if (controls) { // if there are controls in the html doc
-    controls.innerHTML = "<button onclick='ssBackward()'>&#8592;</button> <span id='ssDisplay'> 1 of "+slides.length+" </span> <button onclick='ssForward()'>&#8594;</button>"; 
+    controls.innerHTML = "<button onclick='ssBackward()'>&#8592;</button> <span id='ssDisplay'> 1 of "+slides.length+" </span> <button onclick='ssForward()'>&#8594;</button> <br> <u style='cursor:pointer;' onclick='expandSlideshow()' id='expSs'>Expand</u>"; 
     // left arrow: &#8592;
     // right arrow: &#2192;
 } else if(intervalSet != true) { // if there are no controls, set slideshow to run automatically
     startSsAuto();
+}
+
+function expandSlideshow(){
+    if(ssContainer.classList.contains('big')){
+        ssContainer.classList.remove('big');
+        document.getElementById('expSs').innerHTML = 'Expand';
+    }else{
+        ssContainer.classList.add('big');
+        document.getElementById('expSs').innerHTML = 'Shrink';
+    }
 }
 
 
