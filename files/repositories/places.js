@@ -97,22 +97,22 @@ iter+=1;places[iter] = { // NAME
     longDescription: "longDescription" // remember, if you want an inline img, use <img class='inline' src=''>
   }
 
-iter+=1;places[iter] = { // NAME
+iter+=1;places[iter] = {
   name:"The Torchlight Theater", siteLink:"torchlight-theater",
-  shortDescription: "A classic maximalist theater rooted in the history of Desert Springs arts and culture",
+  shortDescription: "A historic maximalist 104 seat theater rooted in Desert Springs arts and culture",
   coverImg: "https://i.imgur.com/XPbbuGz.png",
-  categories: [3,4,8], age:"0", price:"1",
-  tags: "musical,historic,the alley",
-  location:"The Alley, Desert City"
+  categories: [3, 4, 8], age:"0", price:"0",
+  tags: "Comedy,Shows,The Alley,Historic,Musical,Local",
+  location:"Entertainment District, Desert City"
 }
-  placeDetails[iter] = {
-    slideShowLinks: ['https://i.imgur.com/57VRjdZ.png', 'https://i.imgur.com/F40wAu7.png', 'https://i.imgur.com/QEBkrEK.png', 'https://i.imgur.com/oLGZaiv.png'], // put 'none' if none
-    externalLink: "externalLink", // put 'none' if none
-    accessibility: ['Wheelchair Accessible', 'Service Animals Allowed', 'etc'],
-    contactInfo: ['mailingAddress', 'emailAddress', 'phoneNumber'], // put 'none' if Not Available for any item
-    dateEstablished: "MMMM-DD-YYYY",
-    longDescription: "longDescription" // remember, if you want an inline img, use <img class='inline' src=''>
-  }
+placeDetails[iter] = {
+  slideShowLinks: ["https://i.imgur.com/F40wAu7.png","https://i.imgur.com/QEBkrEK.png","https://i.imgur.com/oLGZaiv.png"],
+  externalLink: "none",
+  accessibility: ["Wheelchair Accessible seating and elevator available. Service animals with permit only."],
+  contactInfo: ["none"],
+  dateEstablished: "",
+  longDescription: "<div class='columnContainer'><img src='https://i.imgur.com/57VRjdZ.png'><div>Nestled in the heart of the city, the Torchlight Theater is a meticulously preserved 114‑seat playhouse that has been delighting audiences for over a century. Born during Desert Springs' entertainment boom, its period architecture, warm glow of vintage lighting, and intimate sightlines create a cozy, up‑close theatrical experience — the kind of venue where every laugh, note, and step feels personal and memorable.</div></div><p>Today the Torchlight remains a vibrant community stage, showcasing a lively mix of small-scale productions: local musical ensembles, stand-up and sketch comedy nights, spirited dance competitions, and colorful pageants. With a year‑round calendar of performances and community events, the theater is the perfect place to discover local talent, celebrate special occasions, or simply enjoy an affordable evening of live entertainment in a historic, welcoming setting. </p>"
+}
 
 iter+=1;places[iter] = { // INFINITY CASINO AND BJS
   name:"Infinity Casino & Resort", siteLink:"infinity-casino",
