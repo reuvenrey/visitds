@@ -215,3 +215,20 @@ placeDetails[iter] = {
   dateEstablished: "January-7-2026",
   longDescription: "<h2>About the Exothermal Theater</h2><p>Anchored above the iconic E-District Metro Station, the Exothermal Theater stands tall as a bold icon of performance, innovation, and cultural celebration. Sponsored by <em>Exothermal Technologies</em> and powered by next-gen Aztech Cinema and LABSound systems, this 2000-seat complex was designed not just as a venue, but as a destination- where storytelling, technology, and architectural prowess are showcased.</p><br><div class='spacer'></div><br><div class='columnContainer'><img src=''><div><h3>An International Stage Beyond Imagination</h3>At the core of the theater lies Minecraftia's largest performance stage, a 6-story canvas for productions of unprecedented scale. This iconic stage has been experienced around the world as the backdrop for the Villager Awards, Minecraftia Music Awards, X-Factor Live, and more. From immersive theatrical epics to large-format concerts and screenings, the Exothermal stage enables artists to explore creative possibilities unmatched anywhere else in the world. </div></div><br><div class='spacer'></div><br><div class='columnContainer'><div><h3>Artistry Fueled by Innovation</h3>Every detail of the venue integrates cutting-edge technology with storytelling prowess. The theater boasts advanced Aztech Cinema visual systems paired with LABSound audio technology to fuel all five senses in a richly dynamic immersive experience. Sponsored by Exothermal Technologies, the theater's aesthetic follows the company's modern and sleek visual identity. </div><img src=''></div><br><div class='spacer'></div><br><div class='columnContainer'><img src=''><div><h3>A Destination for Creativity and Connection</h3>Beyond larger-than-life performances, the Exothermal Theater provides versatile conference facilities and event spaces, originally developed to house the multitude of activities and breakout-sessions during the Villager Awards. These spaces are ideal for corporate gatherings, expos, and celebrations with modular designs to support events of any size. Like the theater, these spaces feature advanced technical infrastructure.</div></div><br><div class='spacer'></div><br><h2>More Information</h2>For the fun of it, here are some facts about the Exothermal Theater you may not know:<p><b>Minecraftia's Largest Screen</b> The advanced Aztech Cinema projection-mapping system converts the theater's massive stage and 180 degrees of surrounding surface into a 50,000sqft screen, the largest in Minecraftia powered by two-dozen laser projectors. </p><p><b>A Sound System that Breathes</b> The theater's LABSound system features \"adaptive resonance\" which automatically tunes acoustics in real-time based on audience size and performance type.</p><p><b>Secret Tunnel Secret Tunnel</b> During award nights and premiers, VIP guests can avoid the crowds through a network of hidden corridors connecting the hotel and other facilities.</p><p><b>Desert City's Largest Chandelier</b> The theater's iconic circular chandelier weighs nearly 2000 pounds (900kg) and spans an area of 3000sqft.</p>"
 }
+
+iter+=1;places[iter] = { // The WAVE Resort & Casino
+  name:"The WAVE Resort, Casino & Club", siteLink:"wave-resort",
+  shortDescription: "A modern resort and casino where the era of disco, dancing, and divas comes out to play.",
+  coverImg: "",
+  categories: [0, 1, 3, 8], age:"1", price:"1",
+  tags: "Bowling,Nightclub,Disco,Family,E-District,Neon Ave,Games,Arcade,Karaoke,Diner",
+  location:"Entertainment District, Desert City"
+}
+placeDetails[iter] = {
+  slideShowLinks: [""],
+  externalLink: "",
+  accessibility: [""],
+  contactInfo: [""],
+  dateEstablished: "",
+  longDescription: "The WAVE Resort features<ul><li>Neon Bowling Alley - 2nd Floor</li><li>The WAVE Disco Club - 1st Floor</li><li>Nostalgic Arcade - 2nd floor</li><li>Disco Diner - 2nd floor</li><li>Casino - 1st floor</li></ul>"
+}
