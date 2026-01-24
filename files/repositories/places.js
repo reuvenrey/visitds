@@ -232,3 +232,20 @@ placeDetails[iter] = {
   dateEstablished: "",
   longDescription: "The WAVE Resort features<ul><li>Neon Bowling Alley - 2nd Floor</li><li>The WAVE Disco Club - 1st Floor</li><li>Nostalgic Arcade - 2nd floor</li><li>Disco Diner - 2nd floor</li><li>Casino - 1st floor</li></ul>"
 }
+
+iter+=1;places[iter] = {// THE CRUX CASINO AND RESORT
+  name:"The CRUX Casino & Resort", siteLink:"cruz-casino-resort",
+  shortDescription: "A world-class luxury destination of elevated indulgence rising above the city skyline.",
+  coverImg: "https://i.imgur.com/BvvAaFx.png",
+  categories: [1, 0, 4], age:"2", price:"2",
+  tags: "Steakhouse,Luxury,Theater,Gambling,Deluxe,E-District,Neon,West Ave,Event Space,Conference Center",
+  location:"Entertainment District, Desert City"
+}
+placeDetails[iter] = {
+  slideShowLinks: ["none"],
+  externalLink: "",
+  accessibility: ["Wheelchair accessible","Service animals with valid permit allowed"],
+  contactInfo: [""],
+  dateEstablished: "",
+  longDescription: "<h2>Experience at its Peak</h2>Welcome to The CRUX Casino, a world-class luxury destination where cutting-edge entertainment, elevated indulgence, and unforgettable moments converge. Rising above the city skyline, The CRUX is more than a casino—it’s the epicenter of nightlife, fine dining, and high-stakes excitement.<p>This is where nights stretch longer, flavors run deeper, and every detail is designed to thrill.</p><div class='spacer'></div><div class='columnContainer'><img src='https://www.nerdly.co.uk/wp-content/uploads/2024/08/casino-new.jpg'><div><h3>Higher Stakes - Higher Standards</h3>Step into an expansive, impeccably designed casino floor that blends timeless glamour with next-generation technology. From classic table games to the latest immersive gaming experiences, The CRUX delivers excitement at every turn. Whether you’re here to play, watch, or simply soak in the energy—this is where the action lives.</div></div><div class='columnContainer'><div><h3>The CRUX Theater</h3>Our state-of-the-art high-tech theater sets a new standard for live performance and cinematic spectacle. Featuring world-class acoustics, immersive visuals, and a sleek modern design, the CRUX Theater hosts top-tier concerts, exclusive events, and unforgettable performances.</div><img src='https://assets.simpleviewcms.com/simpleview/image/fetch/c_limit,q_75,w_1200/https://lasvegas.simpleviewcrm.com/images/listings/original_Pearl-Theater_9CD4A038-07E1-6909-B413659417F06185-9cd49ba0cc2d831.jpeg'></div>"
+}
