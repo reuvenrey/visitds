@@ -234,7 +234,7 @@ placeDetails[iter] = {
 }
 
 iter+=1;places[iter] = {// THE CRUX CASINO AND RESORT
-  name:"The CRUX Casino & Resort", siteLink:"cruz-casino-resort",
+  name:"The CRUX Casino & Resort", siteLink:"cruX-casino-resort",
   shortDescription: "A world-class luxury destination of elevated indulgence rising above the city skyline.",
   coverImg: "https://i.imgur.com/BvvAaFx.png",
   categories: [1, 0, 4], age:"2", price:"2",
