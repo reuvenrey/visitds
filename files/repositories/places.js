@@ -43,8 +43,8 @@ const webLink = 'https://reuvenrey.github.io/visitds/';
   "Wellness & Relaxation",   // 6
   "Outdoor Adventures",      // 7
   "Culture & Nightlife",     // 8
-  "Family Fun"               // 9
-  "Residential Complex"     // 10
+  "Family Fun",              // 9
+  "Residential Complex"      // 10
 ];
 
 ages = [
