@@ -250,3 +250,21 @@ placeDetails[iter] = {
   dateEstablished: "",
   longDescription: "<h2>Experience at its Peak</h2>Welcome to The CRUX Casino, a world-class luxury destination where cutting-edge entertainment, elevated indulgence, and unforgettable moments converge. Rising above the city skyline, The CRUX is more than a casino—it’s the epicenter of nightlife, fine dining, and high-stakes excitement.<p>This is where nights stretch longer, flavors run deeper, and every detail is designed to thrill.</p><div class='spacer'></div><div class='columnContainer'><img src='https://www.nerdly.co.uk/wp-content/uploads/2024/08/casino-new.jpg'><div><h3>Higher Stakes - Higher Standards</h3>Step into an expansive, impeccably designed casino floor that blends timeless glamour with next-generation technology. From classic table games to the latest immersive gaming experiences, The CRUX delivers excitement at every turn. Whether you’re here to play, watch, or simply soak in the energy—this is where the action lives.</div></div><div class='columnContainer'><div><h3>The CRUX Theater</h3>Our state-of-the-art high-tech theater sets a new standard for live performance and cinematic spectacle. Featuring world-class acoustics, immersive visuals, and a sleek modern design, the CRUX Theater hosts top-tier concerts, exclusive events, and unforgettable performances.</div><img src='https://assets.simpleviewcms.com/simpleview/image/fetch/c_limit,q_75,w_1200/https://lasvegas.simpleviewcrm.com/images/listings/original_Pearl-Theater_9CD4A038-07E1-6909-B413659417F06185-9cd49ba0cc2d831.jpeg'></div>"
 }
+
+iter+=1;places[iter] = { // SKYLINE APARTMENTS ON NEON
+  name:"Skyline on Neon Luxury Living", siteLink:"skyline-neon",
+  shortDescription: "A luxury high-rise apartment complex with shopping and dining adjacent to E-District.",
+  coverImg: "img_link",
+  categories: [10], age:"0", price:"0",
+  tags: "Living,Apartment,Target,Grocery",
+  location:"Entertainment District, Desert City"
+}
+  placeDetails[iter] = {
+    slideShowLinks: ['link1', 'link2'], // put 'none' if none
+    externalLink: "externalLink", // put 'none' if none
+    accessibility: ['Wheelchair Accessible', 'Service Animals Allowed', 'etc'],
+    contactInfo: ['mailingAddress', 'emailAddress', 'phoneNumber'], // put 'none' if Not Available for any item
+    dateEstablished: "MMMM-DD-YYYY",
+    longDescription: "Live the high life, 20 stories above the hustle and bustle of Minecraftia's most iconic city. Skyline Apartments brings the luxury high-rise lifestyle of the movies to reality. Whether you're looking for a 1-bedroom or 2-bedroom layout, you'll find your home - and your new life - at Skyline.<img class='inline' src='https://thumbs.6sqft.com/wp-content/uploads/2016/08/12131833/Target-East-Village-e1471022334665.png?w=1560&format=webp'>\
+    <p><h3>Right above the action</h3> In addition to being located less then a crosswalk's distance away from The Alley, the Skyline complex features both a Target and a TJ's Grocery for all your groceries, essentials, and goodies - right downstairs!</p>" // remember, if you want an inline img, use <img class='inline' src=''>
+  }
