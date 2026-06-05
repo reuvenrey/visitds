@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head id='pgHead'>
+    <!--
+    ALWAYS REMEMBER TO ADJUST STYLESHEET AND SCRIPT LINKS BASED ON PAGE LOCATION
+    -->
+    <link rel='stylesheet' href='../files/setup/header/headerStyle.css'>
+    <link rel="stylesheet" href="../files/setup/styleSheet.css">
+    <title>Attractions | Visit Desert Springs</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body onload='finishLoad(); initAttractionsPage();'>
+    <div id='pgLoader'></div>
+    <div id='pgHeader'></div>
+
+    <style>
+        .attractions-page {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 28px 16px 48px;
+            font-family: Arial, Helvetica, sans-serif;
+            box-sizing: border-box;
+        }
+
+        .page-hero {
+            margin-bottom: 24px;
+        }
+
+        .page-hero h1 {
+            margin: 0 0 8px;
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            line-height: 1.15;
+        }
+
+        .page-hero p {
+            margin: 0;
+            color: #5e5e5e;
+            font-size: 1rem;
+            line-height: 1.55;
+            max-width: 760px;
+        }
+
+        .toolbar {
+            display: grid;
+            grid-template-columns: 1.5fr repeat(2, minmax(180px, 220px));
+            gap: 12px;
+            margin: 22px 0 26px;
+        }
+
+        .toolbar-field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .toolbar-field label {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .toolbar-field input,
+        .toolbar-field select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px 12px;
+            border: 1px solid #c9c9c9;
+            border-radius: 10px;
+            font-size: 0.98rem;
+            background: white;
+        }
+
+        .results-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+            margin: 0 0 14px;
+            flex-wrap: wrap;
+        }
+
+        .results-meta p {
+            margin: 0;
+            color: #555;
+        }
+
+        .warning-box,
+        .empty-box {
+            border: 1px solid #e3cf84;
+            background: #fff8df;
+            color: #6a5500;
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 18px;
+            line-height: 1.5;
+        }
+
+        .empty-box {
+            border-color: #d8d8d8;
+            background: #f8f8f8;
+            color: #555;
+        }
+
+        .tiles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 18px;
+        }
+
+        .attraction-tile {
+            border: 1px solid #e1e1e1;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+        }
+
+        .tile-image-wrap {
+            aspect-ratio: 16 / 10;
+            background: #f4f4f4;
+            overflow: hidden;
+        }
+
+        .tile-image-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .tile-content {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .tile-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .tile-title {
+            margin: 0;
+            font-size: 1.18rem;
+            line-height: 1.3;
+        }
+
+        .tile-desc {
+            margin: 0;
+            color: #444;
+            line-height: 1.55;
+        }
+
+        .tile-meta {
+            display: grid;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .meta-block {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .meta-label {
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #6a6a6a;
+            font-weight: 700;
+        }
+
+        .meta-value {
+            color: #202020;
+            line-height: 1.45;
+        }
+
+        .chip-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: #eef5fb;
+            border: 1px solid #d3e5f6;
+            color: #1b5277;
+            font-size: 0.88rem;
+            line-height: 1.2;
+        }
+
+        .tile-link {
+            margin-top: 4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+            color: #0f6cbd;
+            text-decoration: none;
+        }
+
+        .tile-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 860px) {
+            .toolbar {
+                grid-template-columns: 1fr;
+            }
+
+            .results-meta {
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .attractions-page {
+                padding: 22px 12px 40px;
+            }
+
+            .tiles-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .tile-content {
+                padding: 14px;
+            }
+        }
+    </style>
+
+    <main class="attractions-page">
+        <section class="page-hero">
+            <h1>Explore Attractions</h1>
+            <p>Browse attractions from the Visit Desert Springs library. The grid below is responsive for both desktop and mobile browsers and reads directly from your attraction data.</p>
+        </section>
+
+        <div id="dataWarning" class="warning-box" style="display:none;"></div>
+
+        <section class="toolbar" aria-label="Attraction filters">
+            <div class="toolbar-field">
+                <label for="searchInput">Search</label>
+                <input type="text" id="searchInput" placeholder="Search by name or description">
+            </div>
+            <div class="toolbar-field">
+                <label for="locationFilter">Location</label>
+                <select id="locationFilter"></select>
+            </div>
+            <div class="toolbar-field">
+                <label for="categoryFilter">Category</label>
+                <select id="categoryFilter"></select>
+            </div>
+        </section>
+
+        <div class="results-meta">
+            <p id="resultsCount">0 attractions</p>
+            <p>Optimized for desktop and mobile layouts.</p>
+        </div>
+
+        <div id="emptyState" class="empty-box" style="display:none;">No attractions match the current filters.</div>
+        <section id="tilesGrid" class="tiles-grid" aria-live="polite"></section>
+    </main>
+
+    <div id='pgFooter'></div>
+</body>
+
+<script src="../files/setup/header/headerScript.js"></script>
+<!-- Load these before the page script -->
+<script src="../files/repositories/basicInfo.js"></script>
+<script src="../files/repositories/places.js"></script>
+
+<script>
+    if (!Array.isArray(window.specificLocation)) {
+        window.specificLocation = ["Sample Location 1", "Sample Location 2", "Sample Location 3"];
+    }
+    if (!Array.isArray(window.specificCategory)) {
+        window.specificCategory = ["Category A", "Category B", "Category C"];
+    }
+    if (!Array.isArray(window.places)) {
+        window.places = [];
+    }
+
+    function initAttractionsPage() {
+        populateFilterOptions();
+        bindFilterEvents();
+        showWarningsIfNeeded();
+        renderAttractionTiles();
+    }
+
+    function showWarningsIfNeeded() {
+        const warningEl = document.getElementById('dataWarning');
+        const messages = [];
+
+        if (!Array.isArray(window.places) || window.places.length === 0) {
+            messages.push('No attraction data is currently loaded from places.js.');
+        }
+        if (!Array.isArray(window.specificLocation) || window.specificLocation.length === 0) {
+            messages.push('Location labels are not available because specificLocation was not loaded.');
+        }
+        if (!Array.isArray(window.specificCategory) || window.specificCategory.length === 0) {
+            messages.push('Category labels are not available because specificCategory was not loaded.');
+        }
+
+        if (messages.length > 0) {
+            warningEl.style.display = 'block';
+            warningEl.textContent = messages.join(' ');
+        } else {
+            warningEl.style.display = 'none';
+        }
+    }
+
+    function populateFilterOptions() {
+        const locationFilter = document.getElementById('locationFilter');
+        const categoryFilter = document.getElementById('categoryFilter');
+
+        locationFilter.innerHTML = '<option value="">All locations</option>';
+        window.specificLocation.forEach((locationName, index) => {
+            const option = document.createElement('option');
+            option.value = String(index);
+            option.textContent = locationName;
+            locationFilter.appendChild(option);
+        });
+
+        categoryFilter.innerHTML = '<option value="">All categories</option>';
+        window.specificCategory.forEach((categoryName, index) => {
+            const option = document.createElement('option');
+            option.value = String(index);
+            option.textContent = categoryName;
+            categoryFilter.appendChild(option);
+        });
+    }
+
+    function bindFilterEvents() {
+        document.getElementById('searchInput').addEventListener('input', renderAttractionTiles);
+        document.getElementById('locationFilter').addEventListener('change', renderAttractionTiles);
+        document.getElementById('categoryFilter').addEventListener('change', renderAttractionTiles);
+    }
+
+    function renderAttractionTiles() {
+        const grid = document.getElementById('tilesGrid');
+        const emptyState = document.getElementById('emptyState');
+        const countEl = document.getElementById('resultsCount');
+        const filteredAttractions = getFilteredAttractions();
+
+        grid.innerHTML = '';
+        countEl.textContent = filteredAttractions.length + (filteredAttractions.length === 1 ? ' attraction' : ' attractions');
+
+        if (filteredAttractions.length === 0) {
+            emptyState.style.display = 'block';
+            return;
+        }
+
+        emptyState.style.display = 'none';
+
+        filteredAttractions.forEach(place => {
+            grid.appendChild(buildAttractionTile(place));
+        });
+    }
+
+    function getFilteredAttractions() {
+        const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
+        const selectedLocation = document.getElementById('locationFilter').value;
+        const selectedCategory = document.getElementById('categoryFilter').value;
+
+        return window.places.filter(place => {
+            if (!place || typeof place !== 'object') {
+                return false;
+            }
+
+            const matchesSearch = !searchTerm ||
+                String(place.name || '').toLowerCase().includes(searchTerm) ||
+                String(place.shortDescription || '').toLowerCase().includes(searchTerm);
+
+            const matchesLocation = selectedLocation === '' || String(place.location) === selectedLocation;
+
+            const placeCategories = Array.isArray(place.categories) ? place.categories.map(String) : [];
+            const matchesCategory = selectedCategory === '' || placeCategories.includes(String(selectedCategory));
+
+            return matchesSearch && matchesLocation && matchesCategory;
+        });
+    }
+
+    function buildAttractionTile(place) {
+        const tile = document.createElement('article');
+        tile.className = 'attraction-tile';
+
+        const imageWrap = document.createElement('div');
+        imageWrap.className = 'tile-image-wrap';
+        const img = document.createElement('img');
+        img.src = place.coverImg || 'https://reuvenrey.github.io/visitds/files/images/placeholder.jpg';
+        img.alt = place.name ? place.name + ' cover image' : 'Attraction cover image';
+        img.loading = 'lazy';
+        imageWrap.appendChild(img);
+
+        const content = document.createElement('div');
+        content.className = 'tile-content';
+
+        const titleRow = document.createElement('div');
+        titleRow.className = 'tile-title-row';
+        const title = document.createElement('h2');
+        title.className = 'tile-title';
+        title.textContent = place.name || 'Untitled Attraction';
+        titleRow.appendChild(title);
+
+        const desc = document.createElement('p');
+        desc.className = 'tile-desc';
+        desc.textContent = place.shortDescription || 'No brief description available.';
+
+        const meta = document.createElement('div');
+        meta.className = 'tile-meta';
+
+        meta.appendChild(buildMetaBlock('Location', getLocationLabel(place.location)));
+        meta.appendChild(buildCategoryBlock(place.categories));
+
+        content.appendChild(titleRow);
+        content.appendChild(desc);
+        content.appendChild(meta);
+
+        if (place.siteLink) {
+            const link = document.createElement('a');
+            link.className = 'tile-link';
+            link.href = place.siteLink;
+            link.textContent = 'View attraction page';
+            content.appendChild(link);
+        }
+
+        tile.appendChild(imageWrap);
+        tile.appendChild(content);
+        return tile;
+    }
+
+    function buildMetaBlock(label, value) {
+        const block = document.createElement('div');
+        block.className = 'meta-block';
+
+        const labelEl = document.createElement('span');
+        labelEl.className = 'meta-label';
+        labelEl.textContent = label;
+
+        const valueEl = document.createElement('div');
+        valueEl.className = 'meta-value';
+        valueEl.textContent = value;
+
+        block.appendChild(labelEl);
+        block.appendChild(valueEl);
+        return block;
+    }
+
+    function buildCategoryBlock(categories) {
+        const block = document.createElement('div');
+        block.className = 'meta-block';
+
+        const labelEl = document.createElement('span');
+        labelEl.className = 'meta-label';
+        labelEl.textContent = 'Categories';
+
+        const wrap = document.createElement('div');
+        wrap.className = 'chip-wrap';
+
+        const categoryIndexes = Array.isArray(categories) ? categories : [];
+        if (categoryIndexes.length === 0) {
+            const emptyText = document.createElement('div');
+            emptyText.className = 'meta-value';
+            emptyText.textContent = 'No categories listed';
+            block.appendChild(labelEl);
+            block.appendChild(emptyText);
+            return block;
+        }
+
+        categoryIndexes.forEach(index => {
+            const chip = document.createElement('span');
+            chip.className = 'chip';
+            chip.textContent = getCategoryLabel(index);
+            wrap.appendChild(chip);
+        });
+
+        block.appendChild(labelEl);
+        block.appendChild(wrap);
+        return block;
+    }
+
+    function getLocationLabel(index) {
+        const numericIndex = Number(index);
+        if (Array.isArray(window.specificLocation) && window.specificLocation[numericIndex] !== undefined) {
+            return window.specificLocation[numericIndex];
+        }
+        return 'Unknown location';
+    }
+
+    function getCategoryLabel(index) {
+        const numericIndex = Number(index);
+        if (Array.isArray(window.specificCategory) && window.specificCategory[numericIndex] !== undefined) {
+            return window.specificCategory[numericIndex];
+        }
+        return 'Unknown category';
+    }
+</script>
+</html>
