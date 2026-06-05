@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head id='pgHead'>
+    <!--
+    ALWAYS REMEMBER TO ADJUST STYLESHEET AND SCRIPT LINKS BASED ON PAGE LOCATION
+    -->
+    <link rel='stylesheet' href='../setup/header/headerStyle.css'>
+    <link rel="stylesheet" href="../setup/styleSheet.css">
+    <title>Attraction Object Builder | Visit Desert Springs</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body onload='finishLoad(); initBuilder();'>
+    <div id='pgLoader'></div>
+    <div id='pgHeader'></div>
+
+    <style>
+        .builder-wrap {
+            max-width: 1100px;
+            margin: 32px auto;
+            padding: 0 20px 40px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .builder-title {
+            margin-bottom: 8px;
+        }
+        .builder-subtitle {
+            margin-top: 0;
+            color: #555;
+        }
+        .form-section {
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            background: #fff;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        }
+        .form-section h2 {
+            margin-top: 0;
+            font-size: 1.2rem;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+        }
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .field.full {
+            grid-column: 1 / -1;
+        }
+        label {
+            font-weight: 600;
+        }
+        input[type="text"],
+        input[type="url"],
+        select,
+        textarea {
+            padding: 10px 12px;
+            border: 1px solid #bbb;
+            border-radius: 8px;
+            font-size: 0.98rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .checkbox-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 8px;
+        }
+        .checkbox-table th,
+        .checkbox-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .checkbox-table th {
+            background: #f7f7f7;
+        }
+        .toggle-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 4px;
+        }
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+        button {
+            border: none;
+            border-radius: 8px;
+            padding: 12px 18px;
+            font-size: 0.98rem;
+            cursor: pointer;
+        }
+        .primary-btn {
+            background: #0f6cbd;
+            color: white;
+        }
+        .secondary-btn {
+            background: #ececec;
+            color: #111;
+        }
+        .output-wrap {
+            margin-top: 24px;
+        }
+        #generatedCode {
+            min-height: 260px;
+            font-family: Consolas, Monaco, monospace;
+            white-space: pre;
+        }
+        .note {
+            font-size: 0.92rem;
+            color: #666;
+        }
+        .hidden {
+            display: none;
+        }
+        .status {
+            margin-top: 10px;
+            color: #0a5a00;
+            font-weight: 600;
+        }
+        .warning {
+            background: #fff8e1;
+            color: #6b5600;
+            border: 1px solid #ead28b;
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-bottom: 20px;
+        }
+    </style>
+
+    <!-- BODY CONTENT HERE -->
+    <main class="builder-wrap">
+        <h1 class="builder-title">Attraction Object Builder</h1>
+        <p class="builder-subtitle">Fill in the fields below to generate the JavaScript object code for a new attraction.</p>
+        <div id="arrayWarning" class="warning hidden"></div>
+
+        <section class="form-section">
+            <h2>1. Basic Information</h2>
+            <div class="form-grid">
+                <div class="field">
+                    <label for="locationSelect">Location</label>
+                    <select id="locationSelect"></select>
+                </div>
+                <div class="field">
+                    <label for="coordinatesInput">Coordinates</label>
+                    <input type="text" id="coordinatesInput" placeholder="Example: 33.8303, -116.5453">
+                </div>
+                <div class="field">
+                    <label for="completenessSelect">Completeness</label>
+                    <select id="completenessSelect"></select>
+                </div>
+                <div class="field full">
+                    <label>Categories</label>
+                    <table class="checkbox-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 90px;">Select</th>
+                                <th>Category</th>
+                                <th style="width: 90px;">Index</th>
+                            </tr>
+                        </thead>
+                        <tbody id="categoryTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <h2>2. Details</h2>
+            <div class="form-grid">
+                <div class="field">
+                    <label for="placeNameInput">Place Name</label>
+                    <input type="text" id="placeNameInput">
+                </div>
+                <div class="field">
+                    <label for="briefDescriptionInput">Brief Description</label>
+                    <input type="text" id="briefDescriptionInput">
+                </div>
+                <div class="field full">
+                    <label for="coverImageInput">Cover Image</label>
+                    <input type="url" id="coverImageInput" value="https://reuvenrey.github.io/visitds/files/images/placeholder.jpg">
+                </div>
+                <div class="field full">
+                    <label for="siteLinkInput">Site Link</label>
+                    <input type="text" id="siteLinkInput">
+                </div>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <h2>3. Page Details</h2>
+            <div class="form-grid">
+                <div class="field full">
+                    <label for="tagsInput">Tags</label>
+                    <input type="text" id="tagsInput" placeholder="Separate tags with commas">
+                </div>
+                <div class="field">
+                    <label for="dateEstablishedInput">Date Established</label>
+                    <input type="text" id="dateEstablishedInput">
+                </div>
+                <div class="field full">
+                    <label for="longDescriptionInput">Long Description</label>
+                    <textarea id="longDescriptionInput" placeholder="Enter the full description here."></textarea>
+                </div>
+                <div class="field full">
+                    <label>Include Slideshow</label>
+                    <div class="toggle-row">
+                        <input type="checkbox" id="includeSlideshowToggle">
+                        <span>Enable slideshowLinks</span>
+                    </div>
+                </div>
+                <div class="field full hidden" id="slideshowFieldWrap">
+                    <label for="slideshowLinksInput">Slideshow Image URLs</label>
+                    <input type="text" id="slideshowLinksInput" placeholder="Separate image URLs with commas">
+                </div>
+            </div>
+
+            <div class="actions">
+                <button class="primary-btn" type="button" onclick="generateObjectCode()">Generate</button>
+                <button class="secondary-btn" type="button" onclick="copyGeneratedCode()">Copy Code</button>
+                <button class="secondary-btn" type="button" onclick="resetFormValues()">Reset</button>
+            </div>
+
+            <div class="output-wrap">
+                <label for="generatedCode"><strong>Generated Code</strong></label>
+                <textarea id="generatedCode" readonly placeholder="Your generated code will appear here."></textarea>
+                <div id="copyStatus" class="status"></div>
+            </div>
+        </section>
+
+        <p class="note">This page expects the arrays <code>specificLocation</code>, <code>infoCompleteness</code>, and <code>specificCategory</code> to exist in a linked JavaScript file. Fallback sample values are included below only so the page still works if those arrays are not loaded yet.</p>
+    </main>
+    <!-- END OF BODY CONTENT -->
+
+    <div id='pgFooter'></div>
+</body>
+
+<!-- Load and run script to setup header and footer -->
+<script src="../setup/header/headerScript.js"></script>
+<script src="../repositories/basicInfo.js"></script>
+<script>
+    // Fallback sample arrays so the page remains usable if the external JS file is not attached yet.
+    if (!Array.isArray(window.specificLocation)) {
+        window.specificLocation = ["Sample Location 1", "Sample Location 2", "Sample Location 3"];
+    }
+    if (!Array.isArray(window.infoCompleteness)) {
+        window.infoCompleteness = ["Incomplete", "Partial", "Complete"];
+    }
+    if (!Array.isArray(window.specificCategory)) {
+        window.specificCategory = ["Category A", "Category B", "Category C"];
+    }
+
+    function initBuilder() {
+        buildSelectOptions('locationSelect', window.specificLocation);
+        buildSelectOptions('completenessSelect', window.infoCompleteness);
+        buildCategoryTable(window.specificCategory);
+        bindEvents();
+        showArrayWarningIfUsingFallback();
+    }
+
+    function bindEvents() {
+        const slideshowToggle = document.getElementById('includeSlideshowToggle');
+        slideshowToggle.addEventListener('change', function() {
+            document.getElementById('slideshowFieldWrap').classList.toggle('hidden', !this.checked);
+        });
+    }
+
+    function showArrayWarningIfUsingFallback() {
+        const usingFallback =
+            JSON.stringify(window.specificLocation) === JSON.stringify(["Sample Location 1", "Sample Location 2", "Sample Location 3"]) ||
+            JSON.stringify(window.infoCompleteness) === JSON.stringify(["Incomplete", "Partial", "Complete"]) ||
+            JSON.stringify(window.specificCategory) === JSON.stringify(["Category A", "Category B", "Category C"]);
+
+        if (usingFallback) {
+            const warning = document.getElementById('arrayWarning');
+            warning.classList.remove('hidden');
+            warning.textContent = 'One or more required arrays were not loaded from an external JavaScript file, so fallback sample values are being used. Replace them by linking your real JS file.';
+        }
+    }
+
+    function buildSelectOptions(selectId, arr) {
+        const select = document.getElementById(selectId);
+        select.innerHTML = '';
+        arr.forEach((item, index) => {
+            const option = document.createElement('option');
+            option.value = String(index);
+            option.textContent = `${index}: ${item}`;
+            select.appendChild(option);
+        });
+    }
+
+    function buildCategoryTable(arr) {
+        const tbody = document.getElementById('categoryTableBody');
+        tbody.innerHTML = '';
+        arr.forEach((item, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td><input type="checkbox" class="category-checkbox" data-index="${index}"></td>
+                <td>${escapeHtml(item)}</td>
+                <td>${index}</td>
+            `;
+            tbody.appendChild(row);
+        });
+    }
+
+    function escapeHtml(str) {
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    }
+
+    function getTrimmedValue(id) {
+        return document.getElementById(id).value.trim();
+    }
+
+    function parseCommaSeparatedList(value) {
+        return value
+            .split(',')
+            .map(item => item.trim())
+            .filter(Boolean);
+    }
+
+    function jsStringLiteral(value) {
+        // JSON.stringify handles quotes, backslashes, line breaks, <, >, /, etc. safely.
+        return JSON.stringify(String(value));
+    }
+
+    function jsArrayOfStrings(arr) {
+        return '[' + arr.map(item => jsStringLiteral(item)).join(',') + ']';
+    }
+
+    function generateObjectCode() {
+        const selectedCategoryIndexes = Array.from(document.querySelectorAll('.category-checkbox:checked'))
+            .map(box => Number(box.dataset.index));
+
+        const locationIndex = Number(document.getElementById('locationSelect').value || 0);
+        const completenessIndex = Number(document.getElementById('completenessSelect').value || 0);
+
+        const placeName = getTrimmedValue('placeNameInput');
+        const briefDescription = getTrimmedValue('briefDescriptionInput');
+        const coverImage = getTrimmedValue('coverImageInput');
+        const siteLink = getTrimmedValue('siteLinkInput');
+        const coordinates = getTrimmedValue('coordinatesInput');
+        const tags = parseCommaSeparatedList(getTrimmedValue('tagsInput'));
+        const dateEstablished = getTrimmedValue('dateEstablishedInput');
+        const longDescription = document.getElementById('longDescriptionInput').value;
+        const includeSlideshow = document.getElementById('includeSlideshowToggle').checked;
+        const slideshowLinks = parseCommaSeparatedList(getTrimmedValue('slideshowLinksInput'));
+
+        let output = '';
+        output += 'iter+=1;\n';
+        output += 'places[iter] = {';
+        output += 'name:' + jsStringLiteral(placeName) + ',';
+        output += ' siteLink:' + jsStringLiteral(siteLink) + ',';
+        output += 'shortDescription:' + jsStringLiteral(briefDescription) + ',';
+        output += 'coverImg:' + jsStringLiteral(coverImage) + ',';
+        output += 'categories:[' + selectedCategoryIndexes.join(',') + '],' ;
+        output += ' location:' + locationIndex + ',';
+        output += ' coordinates:' + jsStringLiteral(coordinates) + ',';
+        output += ' completeness:' + completenessIndex;
+        output += '};\n';
+
+        output += 'placePage[iter] = {';
+        output += 'tags:' + jsArrayOfStrings(tags) + ',';
+        output += ' dateEstablished:' + jsStringLiteral(dateEstablished) + ',';
+        output += ' longDescription:' + jsStringLiteral(longDescription);
+        if (includeSlideshow) {
+            output += ', slideshowLinks:' + jsArrayOfStrings(slideshowLinks);
+        }
+        output += '};';
+
+        document.getElementById('generatedCode').value = output;
+        document.getElementById('copyStatus').textContent = '';
+    }
+
+    async function copyGeneratedCode() {
+        const output = document.getElementById('generatedCode').value;
+        const status = document.getElementById('copyStatus');
+        if (!output) {
+            status.textContent = 'Nothing to copy yet. Generate the object first.';
+            return;
+        }
+        try {
+            await navigator.clipboard.writeText(output);
+            status.textContent = 'Code copied to clipboard.';
+        } catch (err) {
+            status.textContent = 'Copy failed. Please select the code manually and copy it.';
+        }
+    }
+
+    function resetFormValues() {
+        document.getElementById('coordinatesInput').value = '';
+        document.getElementById('placeNameInput').value = '';
+        document.getElementById('briefDescriptionInput').value = '';
+        document.getElementById('coverImageInput').value = 'https://reuvenrey.github.io/visitds/files/images/placeholder.jpg';
+        document.getElementById('siteLinkInput').value = '';
+        document.getElementById('tagsInput').value = '';
+        document.getElementById('dateEstablishedInput').value = '';
+        document.getElementById('longDescriptionInput').value = '';
+        document.getElementById('includeSlideshowToggle').checked = false;
+        document.getElementById('slideshowLinksInput').value = '';
+        document.getElementById('slideshowFieldWrap').classList.add('hidden');
+        document.querySelectorAll('.category-checkbox').forEach(box => box.checked = false);
+        document.getElementById('locationSelect').selectedIndex = 0;
+        document.getElementById('completenessSelect').selectedIndex = 0;
+        document.getElementById('generatedCode').value = '';
+        document.getElementById('copyStatus').textContent = '';
+    }
+</script>
+</html>
