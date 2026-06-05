@@ -157,7 +157,7 @@
                 </div>
                 <div class="field">
                     <label for="coordinatesInput">Coordinates</label>
-                    <input type="text" id="coordinatesInput" placeholder="Example: 33.8303, -116.5453">
+                    <input type="text" id="coordinatesInput" placeholder="XXX YYY ZZZ">
                 </div>
                 <div class="field">
                     <label for="completenessSelect">Completeness</label>
@@ -187,16 +187,16 @@
                     <input type="text" id="placeNameInput">
                 </div>
                 <div class="field">
-                    <label for="briefDescriptionInput">Brief Description</label>
-                    <input type="text" id="briefDescriptionInput">
+                    <label for="siteLinkInput">Site Link</label>
+                    <input type="text" id="siteLinkInput" placeholder='example-link'>
                 </div>
                 <div class="field full">
                     <label for="coverImageInput">Cover Image</label>
                     <input type="url" id="coverImageInput" value="https://reuvenrey.github.io/visitds/files/images/placeholder.jpg">
                 </div>
                 <div class="field full">
-                    <label for="siteLinkInput">Site Link</label>
-                    <input type="text" id="siteLinkInput">
+                    <label for="briefDescriptionInput">Brief Description</label>
+                    <input type="text" id="briefDescriptionInput">
                 </div>
             </div>
         </section>
@@ -360,7 +360,13 @@
         const coordinates = getTrimmedValue('coordinatesInput');
         const tags = parseCommaSeparatedList(getTrimmedValue('tagsInput'));
         const dateEstablished = getTrimmedValue('dateEstablishedInput');
-        const longDescription = document.getElementById('longDescriptionInput').value;
+
+        const rawLongDescription = document.getElementById('longDescriptionInput').value;
+        const longDescription = rawLongDescription
+            .replace(/\r\n/g, '\n')
+            .replace(/\n\n+/g, '<br><br>')  // paragraph spacing
+            .replace(/\n/g, '<br>');
+
         const includeSlideshow = document.getElementById('includeSlideshowToggle').checked;
         const slideshowLinks = parseCommaSeparatedList(getTrimmedValue('slideshowLinksInput'));
 
