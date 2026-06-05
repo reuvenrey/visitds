@@ -140,6 +140,28 @@
             padding: 10px 12px;
             margin-bottom: 20px;
         }
+
+    .tag-picker {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 6px 0 10px;
+    }
+    .tag-btn {
+        border: 1px solid #bfd3e6;
+        background: #f5f9fd;
+        color: #184b73;
+        border-radius: 999px;
+        padding: 7px 12px;
+        font-size: 0.92rem;
+        cursor: pointer;
+    }
+    .tag-btn:hover { background: #eaf4fc; }
+    .tag-btn.selected {
+        background: #0f6cbd;
+        color: white;
+        border-color: #0f6cbd;
+    }
     </style>
 
     <!-- BODY CONTENT HERE -->
@@ -204,10 +226,14 @@
         <section class="form-section">
             <h2>3. Page Details</h2>
             <div class="form-grid">
+                
                 <div class="field full">
                     <label for="tagsInput">Tags</label>
+                    <p class="note">Click an existing tag below to add it to the input. You can still type extra tags manually.</p>
+                    <div id="existingTagsWrap" class="tag-picker"></div>
                     <input type="text" id="tagsInput" placeholder="Separate tags with commas">
                 </div>
+
                 <div class="field">
                     <label for="dateEstablishedInput">Date Established</label>
                     <input type="text" id="dateEstablishedInput">
@@ -252,6 +278,7 @@
 <!-- Load and run script to setup header and footer -->
 <script src="../setup/header/headerScript.js"></script>
 <script src="../repositories/basicInfo.js"></script>
+<script src="../repositories/places.js"></script>
 <script>
     // Fallback sample arrays so the page remains usable if the external JS file is not attached yet.
     if (!Array.isArray(window.specificLocation)) {
@@ -264,10 +291,12 @@
         window.specificCategory = ["Category A", "Category B", "Category C"];
     }
 
+    
     function initBuilder() {
         buildSelectOptions('locationSelect', window.specificLocation);
         buildSelectOptions('completenessSelect', window.infoCompleteness);
         buildCategoryTable(window.specificCategory);
+        renderExistingTags();
         bindEvents();
         showArrayWarningIfUsingFallback();
     }
@@ -428,6 +457,62 @@
         document.getElementById('completenessSelect').selectedIndex = 0;
         document.getElementById('generatedCode').value = '';
         document.getElementById('copyStatus').textContent = '';
+    }
+
+    // TAGS
+    function renderExistingTags() {
+    const wrap = document.getElementById('existingTagsWrap');
+    wrap.innerHTML = '';
+
+    const tags = getExistingTags();
+    if (tags.length === 0) {
+        wrap.innerHTML = '<span class="note">No existing tags found yet.</span>';
+        return;
+    }
+
+    tags.forEach(tag => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'tag-btn';
+        btn.textContent = tag;
+        btn.addEventListener('click', () => addTagToInput(tag, btn));
+        wrap.appendChild(btn);
+    });
+    }
+    
+    function getExistingTags() {
+        if (!Array.isArray(window.placePage)) {
+            return [];
+        }
+    
+        const tagSet = new Set();
+        window.placePage.forEach(item => {
+            if (item && Array.isArray(item.tags)) {
+                item.tags.forEach(tag => {
+                    const cleanTag = String(tag).trim();
+                    if (cleanTag) {
+                        tagSet.add(cleanTag);
+                    }
+                });
+            }
+        });
+    
+        return Array.from(tagSet).sort((a, b) => a.localeCompare(b));
+    }
+    
+    function addTagToInput(tag, btn) {
+        const input = document.getElementById('tagsInput');
+        const currentTags = parseCommaSeparatedList(input.value);
+        const alreadyExists = currentTags.some(existing => existing.toLowerCase() === tag.toLowerCase());
+    
+        if (!alreadyExists) {
+            currentTags.push(tag);
+            input.value = currentTags.join(', ');
+        }
+    
+        if (btn) {
+            btn.classList.add('selected');
+        }
     }
 </script>
 </html>
