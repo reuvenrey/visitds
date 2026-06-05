@@ -268,7 +268,7 @@
             </div>
         </section>
 
-        <p class="note">This page expects the arrays <code>specificLocation</code>, <code>infoCompleteness</code>, and <code>specificCategory</code> to exist in a linked JavaScript file. Fallback sample values are included below only so the page still works if those arrays are not loaded yet.</p>
+        <p>To add this to the repository, <a href='https://github.com/reuvenrey/visitds/blob/main/files/repositories/places.js'>open places.js</a></p>
     </main>
     <!-- END OF BODY CONTENT -->
 
@@ -280,18 +280,13 @@
 <script src="../repositories/basicInfo.js"></script>
 <script src="../repositories/places.js"></script>
 <script>
-    // Fallback sample arrays so the page remains usable if the external JS file is not attached yet.
-    if (!Array.isArray(window.specificLocation)) {
-        window.specificLocation = ["Sample Location 1", "Sample Location 2", "Sample Location 3"];
-    }
-    if (!Array.isArray(window.infoCompleteness)) {
-        window.infoCompleteness = ["Incomplete", "Partial", "Complete"];
-    }
-    if (!Array.isArray(window.specificCategory)) {
-        window.specificCategory = ["Category A", "Category B", "Category C"];
-    }
 
-    
+    // Prevent user from leaving the page without saving
+    window.addEventListener('beforeunload', function (e) {
+        e.preventDefault();
+        e.returnValue = '';
+    });
+
     function initBuilder() {
         buildSelectOptions('locationSelect', window.specificLocation);
         buildSelectOptions('completenessSelect', window.infoCompleteness);
