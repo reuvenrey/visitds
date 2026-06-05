@@ -12,12 +12,12 @@ pgHead.innerHTML += '<meta charset="UTF-8">  <meta name="viewport" content="widt
 
 // Populate the HEADER
 header.innerHTML = "<div id='headerBar'><div id='hbContent'></div> \
-    <div class='hbMenu hidden' id='exploreMenuLarge'><h3 style='margin:0px 0px 10px 0px;'>Explore <span class='cursive' style='color:gold;'>DS</span></h3><div class='hbBoldLinks'><a href='"+websiteLink+"explore/things-to-do' onmouseover='toggleHbIcon(\"hbmExplore\")'>&#8594; Explore Attractions & Actvities</a><a href='"+websiteLink+"explore/places-to-visit' onmouseover='toggleHbIcon(\"hbmDistricts\")'>&#8594; Discover Districts & Cities</a><a onmouseover='toggleHbIcon(\"hbmCalendar\")'>&#8594; View Events Calendar</a></div>\
+    <div class='hbMenu hidden' id='exploreMenuLarge'><h3 style='margin:0px 0px 10px 0px;'>Explore <span class='cursive' style='color:gold;'>DS</span></h3><div class='hbBoldLinks'><a href='"+websiteLink+"explore/attractions' onmouseover='toggleHbIcon(\"hbmExplore\")'>&#8594; Explore Attractions & Actvities</a><a href='"+websiteLink+"explore/places-to-visit' onmouseover='toggleHbIcon(\"hbmDistricts\")'>&#8594; Discover Districts & Cities</a><a onmouseover='toggleHbIcon(\"hbmCalendar\")'>&#8594; View Events Calendar</a></div>\
         <img class='hbmIcon hidden' id='hbmExplore' src='"+websiteLink+"files/images/icons/categoryIcon-3.png'> <img class='hbmIcon hidden' id='hbmDistricts' src='"+websiteLink+"files/images/icons/categoryIcon-7.png'> <img class='hbmIcon hidden' id='hbmCalendar' src='"+websiteLink+"files/images/icons/categoryIcon-9.png'></div></div> \
     <div class='hbMenu hidden' id='infoMenuLarge'><h3 style='margin:0px 0px 10px 0px;'>Visitor Information</h3><div class='hbBoldLinks'><a>&#8594; Travel Guides & Articles</a> <a>&#8594; Transportation & Parking</a></div></div> \
     </div>\
-     <div class='hbSideMenu hidden' id='headerSideMenu'><div class='hbBoldLinks'><a href=''>Discover <span class='cursive'>DS</span> Districts</a> <a href='"+websiteLink+"explore/things-to-do'>Explore Attractions & Activities</a> <a>View Events Calendar</a></div> <br><div class='spacer noMargin'></div> \
-     <br><div class='hbBoldLinks'><a href='"+websiteLink+"explore/things-to-do?categories=0'>Places to Stay</a></div> <br><div class='spacer noMargin'></div> \
+     <div class='hbSideMenu hidden' id='headerSideMenu'><div class='hbBoldLinks'><a href=''>Discover <span class='cursive'>DS</span> Districts</a> <a href='"+websiteLink+"explore/attractions'>Explore Attractions & Activities</a> <a>View Events Calendar</a></div> <br><div class='spacer noMargin'></div> \
+     <br><div class='hbBoldLinks'><a href='"+websiteLink+"explore/attractions?categories=0'>Places to Stay</a></div> <br><div class='spacer noMargin'></div> \
      <br><div class='hbBoldLinks'><a>Visitor Guides & Articles</a> <a>Transportation & Parking</a></div> </div>\
      </div>"; // <--  end of setting up header bar with menus
 
@@ -28,7 +28,7 @@ header.innerHTML = "<div id='headerBar'><div id='hbContent'></div> \
 
         // Contents of the Header Links Section:
         const smallHeaderContents = "<a href='"+websiteLink+"search'><img src='"+websiteLink+"files/images/icons/search-white.png'></a> <a onclick='toggleMenu(\"headerSideMenu\");'><img src='"+websiteLink+"files/images/icons/menu-white.png'></a>";
-        const largeHeaderContents = "<a onclick='toggleMenu(\"exploreMenuLarge\");'>Explore <span class='cursive'>DS</span> &#11206;</a> <a href='"+websiteLink+"explore/things-to-do?categories=0'>Hotels & Resorts</a> <a onclick='toggleMenu(\"infoMenuLarge\");'>Information &#11206;</a> <a href='"+websiteLink+"search'><img src='"+websiteLink+"files/images/icons/search-white.png'></a>";
+        const largeHeaderContents = "<a onclick='toggleMenu(\"exploreMenuLarge\");'>Explore <span class='cursive'>DS</span> &#11206;</a> <a href='"+websiteLink+"explore/attractions?categories=0'>Hotels & Resorts</a> <a onclick='toggleMenu(\"infoMenuLarge\");'>Information &#11206;</a> <a href='"+websiteLink+"search'><img src='"+websiteLink+"files/images/icons/search-white.png'></a>";
 
     if(window.innerWidth <= 1000){ // Reduced Header
         document.getElementById("headerLinks").innerHTML = smallHeaderContents;
