@@ -4,13 +4,13 @@
     <!--
     ALWAYS REMEMBER TO ADJUST STYLESHEET AND SCRIPT LINKS BASED ON PAGE LOCATION
     -->
-    <link rel='stylesheet' href='../files/setup/header/headerStyle.css'>
-    <link rel="stylesheet" href="../files/setup/styleSheet.css">
-    <title>Attractions | Visit Desert Springs</title>
+    <link rel='stylesheet' href='files/setup/header/headerStyle.css'>
+    <link rel="stylesheet" href="files/setup/styleSheet.css">
+    <title>Explore | Visit Desert Springs</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body onload='finishLoad(); initAttractionsPage();'>
+<body onload='finishLoad();'>
     <div id='pgLoader'></div>
     <div id='pgHeader'></div>
 
@@ -243,8 +243,8 @@
 
     <main class="attractions-page">
         <section class="page-hero">
-            <h1>Explore Attractions</h1>
-            <p>Browse attractions from the Visit Desert Springs library. The grid below is responsive for both desktop and mobile browsers and reads directly from your attraction data.</p>
+            <h1>Explore the City</h1>
+            <p>Browse locations, attractions, and landmarks across Desert Springs.</p>
         </section>
 
         <div id="dataWarning" class="warning-box" style="display:none;"></div>
@@ -276,10 +276,10 @@
     <div id='pgFooter'></div>
 </body>
 
-<script src="../files/setup/header/headerScript.js"></script>
+<script src="files/setup/header/headerScript.js"></script>
 <!-- Load these before the page script -->
-<script src="../files/repositories/basicInfo.js"></script>
-<script src="../files/repositories/places.js"></script>
+<script src="files/repositories/basicInfo.js"></script>
+<script src="files/repositories/places.js"></script>
 
 <script>
     if (!Array.isArray(window.specificLocation)) {
@@ -431,7 +431,7 @@
         if (place.siteLink) {
             const link = document.createElement('a');
             link.className = 'tile-link';
-            link.href = place.siteLink;
+            link.href = "explore/place.html?n="+place.siteLink;
             link.textContent = 'View attraction page';
             content.appendChild(link);
         }
@@ -506,5 +506,9 @@
         }
         return 'Unknown category';
     }
+</script>
+
+<script>
+    initAttractionsPage();
 </script>
 </html>
