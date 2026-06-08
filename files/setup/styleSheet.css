@@ -28,7 +28,7 @@ h4{font-family: 'Lexend Deca',veranda; font-size:18px;}
 	}
 
 .titleBar {width:100%; background: midnightblue; padding: 20px; color:white; text-align:center;}
-	.titleBar.#efefef {background:#efefef; color:black;}
+	.titleBar.silver {background:#efefef; color:black;}
 
 .columnContainer{
 	display: flex; flex-flow: row; margin:0; padding:0;
@@ -167,6 +167,6 @@ a.btn.cyan, a.btn.cyan.filled:hover {border:2px solid #3EC9C4; color:#3EC9C4; ba
 	.linksContainer.light > a {background: white; color:black;}
 	.linksContainer.gold > a {background:#FFC857; color:black;}
 	.linksContainer.transparent > a {background: rgba(255, 255, 255, 0.6); color:white;}
-	.linksContainer.#efefef > a {background: #efefef; color:black;}
+	.linksContainer.silver > a {background: #efefef; color:black;}
 
 a {color:inherit;}
