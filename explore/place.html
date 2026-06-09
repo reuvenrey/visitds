@@ -69,6 +69,13 @@
 
         <div class="spacer"></div>
 
+		<!-- Slideshow -->
+		<div class='container'>
+			<div id="galleryContainer"></div>
+		</div>
+	
+		<div class='spacer'></div>
+
         <div class="container centered">
             <h3>Want to visit?</h3>
             <span id="copyCoords"></span>
@@ -93,12 +100,26 @@
 		
 		<!-- END OF BODY CONTENT -->
 
+		<!-- SLIDESHOW FULL SCREEN VIEWER -->		
+		<div id="galleryLightbox" class="gallery-lightbox">
+		    <button class="lightbox-close" id="lightboxClose">&times;</button>
+		    <button class="lightbox-nav prev" id="lightboxPrev">&#10094;</button>
+		    <img id="lightboxImage" class="lightbox-image" src="" alt="Expanded gallery image">
+		    <button class="lightbox-nav next" id="lightboxNext">&#10095;</button>
+		    <div class="lightbox-counter" id="lightboxCounter">1 of 1</div>
+		</div>
+
+
 	<div id='pgFooter'></div>
 </body>
     <!-- Load and run script to setup header and footer --> <script src="../files/setup/header/headerScript.js"></script>
 	<!-- Link any additional scripts below : <script src='script_src_link'></script> -->
      <script src="../files/repositories/places.js"></script>
      <script src="../files/repositories/basicInfo.js"></script>
+
+	<!-- for slideshow -->
+	<script src='../files/setup/image-viewer/imageViewer.js'></script>
+	<link rel="stylesheet" href="../files/setup/image-viewer/imageViewer.css">
 
      <script src="../files/scripts/page-script.js"></script>
 </html>
