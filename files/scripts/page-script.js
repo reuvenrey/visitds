@@ -37,7 +37,12 @@ if(placeInfo == false){
 
     //Copy Coordinates
     let coordCopy = "/tp @p " + placeInfo.coordinates;
-    document.getElementById('copyCoords').innerHTML="<button onclick='navigator.clipboard.writeText(\""+coordCopy+"\")'>Copy Coordinates</button>"
+    if(coordCopy == 'TBD' || coordCopy == ''){
+        document.getElementById('copyCoords').innerHTML="<p>✖️ Coordinates are not yet available</p>";
+    }else{
+        document.getElementById('copyCoords').innerHTML="<h3 style='cursor:pointer; color:navy;' onclick='navigator.clipboard.writeText(\"/tp @p "+coordCopy+"\");'>🗺️ Click to copy coordinates</h3>";
+    }
+    
 
     // Populate Image Section
     if(Object.hasOwn(placeDetail, "slideshowLinks")){
