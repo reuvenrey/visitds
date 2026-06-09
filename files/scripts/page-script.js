@@ -21,7 +21,7 @@ if(placeInfo == false){
     document.getElementById('errorWindow').classList.add('shown');
 }else{
     // Create the page
-    document.getElementById('pgTitle').innerHTML = placeInfo.name + " | Things to Do | Visit Desert Springs"; // set title of page
+    document.getElementById('pgTitle').innerHTML = placeInfo.name + " | Explore Desert Springs"; // set title of page
     
     // Create page banner
         document.getElementById('pgBanner').innerHTML = "<img src='"+placeInfo.coverImg+"'><div class='overlay'><div class='container'>\
