@@ -3,12 +3,14 @@ const placeLink = urlParams.get('n');
 
 var placeInfo = false;
 var placeDetail = false;
+var placeIndex = 0;
 
 // First, get the index of the selected place
 for(i=0; i<places.length; i++){
     if(places[i].siteLink == placeLink){
         placeInfo = places[i];
         placeDetail = placePage[i];
+        placeIndex = i;
         break;
     }
 }
@@ -38,7 +40,9 @@ if(placeInfo == false){
     document.getElementById('copyCoords').innerHTML="<button onclick='navigator.clipboard.writeText(\""+coordCopy+"\")'>Copy Coordinates</button>"
 
     // Populate Image Section
-
+    if(Object.hasOwn(placeDetail, "slideshowLinks")){
+        createImageGallery(placeIndex);
+    }
 
     // Explore similar categories
         const similarCategories = document.getElementById('similarCategories');
