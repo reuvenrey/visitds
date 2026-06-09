@@ -36,7 +36,7 @@ if(placeInfo == false){
     document.getElementById('pgContent').innerHTML = placeDetail.longDescription;
 
     //Copy Coordinates
-    let coordCopy = "/tp @p " + placeInfo.coordinates;
+    let coordCopy = placeInfo.coordinates;
     if(coordCopy == 'TBD' || coordCopy == ''){
         document.getElementById('copyCoords').innerHTML="<p>✖️ Coordinates are not yet available</p>";
     }else{
