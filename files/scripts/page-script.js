@@ -42,6 +42,8 @@ if(placeInfo == false){
     // Populate Image Section
     if(Object.hasOwn(placeDetail, "slideshowLinks")){
         createImageGallery(placeIndex);
+    }else{
+        document.getElementById("slideshowSection").style.display = 'none';
     }
 
     // Explore similar categories
