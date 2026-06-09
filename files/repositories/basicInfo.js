@@ -4,7 +4,8 @@ specificLocation = ["Downtown", 				 //0
 				"Entertainment District", 	 // 3
 				"Technology Park", 		 // 4
 				"Media District", 			 // 5
-				"Exposition Park",         // 6
+				"Exposition Park",
+				"Highland",		// 6
 				"Greater Desert Springs",   // 7
 				"Various Locations"
                ];
@@ -12,7 +13,7 @@ specificLocation = ["Downtown", 				 //0
 specificCategory = [
 	"Hotels & Resorts",	"Casinos",	"Restaurants",
 	"Attractions & Landmarks",	"Entertainment", "Shopping", "Wellness & Relaxation",
-	"Outdoors & Recreation",	"Culture & Nightlife",	"Family Fun",
+	"Outdoors & Recreation",	"Culture & Nightlife",	"Family Fun", "Event Venue", 
 	"Residential",	"Offices", 	"Industrial",
 	"Government Facilities", "Other"
 ];
