@@ -170,6 +170,20 @@
         <p class="builder-subtitle">Fill in the fields below to generate the JavaScript object code for a new attraction.</p>
         <div id="arrayWarning" class="warning hidden"></div>
 
+        
+        <section class="form-section">
+            <h2>Import Existing Attraction</h2>
+            <div class="form-grid">
+                <div class="field">
+                    <label for="importSelect">Select Attraction</label>
+                    <select id="importSelect"></select>
+                </div>
+                <div class="field" style="align-self: end;">
+                    <button class="secondary-btn" type="button" onclick="importAttraction()">Import</button>
+                </div>
+            </div>
+        </section>
+        
         <section class="form-section">
             <h2>1. Basic Information</h2>
             <div class="form-grid">
@@ -293,6 +307,7 @@
         buildCategoryTable(window.specificCategory);
         renderExistingTags();
         bindEvents();
+        populateImportDropdown();
         showArrayWarningIfUsingFallback();
     }
 
@@ -509,5 +524,75 @@
             btn.classList.add('selected');
         }
     }
+
+    // For importing an existing attraction
+    function populateImportDropdown() {
+        const select = document.getElementById('importSelect');
+        select.innerHTML = '';
+    
+        if (!Array.isArray(window.places)) return;
+    
+        window.places.forEach((place, index) => {
+            if (!place) return;
+    
+            const option = document.createElement('option');
+            option.value = index;
+            option.textContent = `${index}: ${place.name || 'Unnamed Attraction'}`;
+            select.appendChild(option);
+        });
+    }
+
+    function importAttraction() {
+        const index = Number(document.getElementById('importSelect').value);
+    
+        const place = window.places[index];
+        const page = window.placePage[index];
+    
+        if (!place) return;
+    
+        // ===== Basic Info =====
+        document.getElementById('locationSelect').value = place.location ?? 0;
+        document.getElementById('coordinatesInput').value = place.coordinates ?? '';
+        document.getElementById('completenessSelect').value = place.completeness ?? 0;
+    
+        // Categories
+        document.querySelectorAll('.category-checkbox').forEach(box => {
+            const idx = Number(box.dataset.index);
+            box.checked = Array.isArray(place.categories) && place.categories.includes(idx);
+        });
+    
+        // ===== Details =====
+        document.getElementById('placeNameInput').value = place.name ?? '';
+        document.getElementById('siteLinkInput').value = place.siteLink ?? '';
+        document.getElementById('coverImageInput').value = place.coverImg ?? '';
+        document.getElementById('briefDescriptionInput').value = place.shortDescription ?? '';
+    
+        // ===== Page Details =====
+        if (page) {
+            // Tags
+            document.getElementById('tagsInput').value =
+                Array.isArray(page.tags) ? page.tags.join(', ') : '';
+    
+            // Date
+            document.getElementById('dateEstablishedInput').value = page.dateEstablished ?? '';
+    
+            // Long Description (reverse <br> → new lines)
+            let longDesc = page.longDescription ?? '';
+            longDesc = longDesc.replace(/<br><br>/g, '\n\n').replace(/<br>/g, '\n');
+            document.getElementById('longDescriptionInput').value = longDesc;
+    
+            // Slideshow
+            const hasSlideshow =
+                Array.isArray(page.slideshowLinks) && page.slideshowLinks.length > 0;
+    
+            document.getElementById('includeSlideshowToggle').checked = hasSlideshow;
+            document.getElementById('slideshowFieldWrap')
+                .classList.toggle('hidden', !hasSlideshow);
+    
+            document.getElementById('slideshowLinksInput').value =
+                hasSlideshow ? page.slideshowLinks.join(', ') : '';
+        }
+    }// end of function importAttraction
+
 </script>
 </html>
