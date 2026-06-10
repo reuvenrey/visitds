@@ -12,7 +12,7 @@
 </head>
 
 <style>
-    
+    /* FILTER OPTIONS */
     .category-filter-wrap {
         display: flex;
         flex-wrap: wrap;
@@ -44,21 +44,99 @@
         display: none;
     }
 
+    /* RESULTS CONTAINER */
+    tiles-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+    }
+    
+        /* Tablet */
+        @media (max-width: 1000px) {
+            .tiles-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Mobile */
+        @media (max-width: 700px) {
+            .tiles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+    .tile {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        cursor: pointer;
+        border: 1px solid #ddd;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    
+    .tile:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    }
+    
+    /* Image */
+    .tile img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        display: block;
+    }
+    
+    /* Content */
+    .tile-content {
+        padding: 12px;
+    }
+    
+    .tile-title {
+        font-weight: 600;
+        margin-bottom: 6px;
+    }
+    
+    .tile-location {
+        font-size: 0.9rem;
+        color: #555;
+        margin-bottom: 8px;
+    }
+    
+    /* Category chips */
+    .tile-categories {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    
+    .tile-chip {
+        background: #eef5fb;
+        border: 1px solid #d3e5f6;
+        border-radius: 999px;
+        padding: 4px 8px;
+        font-size: 0.8rem;
+    }
+
 
 </style>
     
 <body onload='finishLoad();'>
     <div id='pgLoader'></div><div id='pgHeader'></div>
 
-    <div class='container'>
-        <h1>Explore the City</h1>
-        Browse various locations around Desert Springs. Click on a tile to view more information and coordinates.
+    <div class='section' style='margin-top:0;'>
+        <div class='container'>
+            <h1>Explore the City</h1>
+            Browse various locations around Desert Springs. Click on a tile to view more information and coordinates.
+        </div>
     </div>
-
+    
     <div class='container'>
-        <p style=''>Filter by Category</p>
+        <p style=''>📱 Filter by Category</p>
         <div id="categoryFilters" class="category-filter-wrap"></div>
-        <p style=''>Filter by Location</p>
+        <p style=''>📍 Filter by Location</p>
         <div id="locationFilters" class="category-filter-wrap"></div>
         <a class='btn noLeft hidden' id="applyFilterBtn" style='cursor:pointer; font-size:0.9rem' onclick="applyCategoryFilter()">Apply search filters</a>
         <a class='btn' id="applyFilterBtn" style='cursor:pointer; font-size:0.9rem' onclick="clearFilters()">Clear filters</a>
@@ -68,9 +146,7 @@
 
     <div class='container'>
         <p id='resultsCounter'>Showing NUM results</p>
-        <div id='resultsContainer'>
-            
-        </div>
+        <div id="tilesContainer" class="tiles-grid"></div>
     </div>
     
     <div id='pgFooter'></div>
@@ -96,6 +172,8 @@
         selectedLocations = filters.locations;
 
         applySelectedStyles();
+        
+        renderTiles(); // show the attractions
     }
 
     // FILTER BUTTONS -------------------------------
@@ -225,6 +303,52 @@
     function clearFilters() {
         window.location.href = 'explore.html';
     }
+
+    // Render Attraction Tiles
+    function renderTiles() {
+        const container = document.getElementById('tilesContainer');
+        container.innerHTML = '';
+    
+        let filteredPlaces = filterPlaces(window.places); // uses your filters
+    
+        filteredPlaces.forEach(place => {
+            container.appendChild(createTile(place));
+        });
+    }
+
+    // Create a tile
+    function createTile(place) {
+        const tile = document.createElement('div');
+        tile.className = 'tile';
+    
+        const locationName = window.specificLocation[place.location] || 'Unknown';
+        const categoryNames = (place.categories || []).map(i =>
+            window.specificCategory[i] || 'Unknown'
+        );
+    
+        tile.innerHTML = `
+            <img src="${place.coverImg}" alt="${place.name}" loading="lazy">
+    
+            <div class="tile-content">
+                <div class="tile-title">${place.name}</div>
+                <div class="tile-location">${locationName}</div>
+    
+                <div class="tile-categories">
+                    ${categoryNames.map(cat => `
+                        <span class="tile-chip">${cat}</span>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    
+        // ✅ Click behavior
+        tile.addEventListener('click', () => {
+            window.location.href = `explore/place.html?n=${place.siteLink}`;
+        });
+    
+        return tile;
+    }
+
 
 
 </script>
