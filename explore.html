@@ -10,6 +10,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
+<style>
+    
+    .category-filter-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 16px;
+    }
+    
+    .category-bubble {
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: #eef5fb;
+        border: 1px solid #d3e5f6;
+        cursor: pointer;
+        font-size: 0.9rem;
+        user-select: none;
+    }
+    
+    .category-bubble:hover {
+        background: #e2effc;
+    }
+    
+    .category-bubble.selected {
+        background: #0f6cbd;
+        color: white;
+        border-color: #0f6cbd;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+
+</style>
+    
 <body onload='finishLoad();'>
     <div id='pgLoader'></div><div id='pgHeader'></div>
 
@@ -20,8 +57,8 @@
 
     <div class='container'>
         <p style='margin-bottom:0; font-size:12px;'>Filter Results</p>
-        <div id='filterContainer'></div>
-        <a class='btn'>Apply</a>
+        <div id="categoryFilters" class="category-filter-wrap"></div>
+        <a class='btn noLeft hidden' id="applyFilterBtn" style='cursor:pointer;' onclick="applyCategoryFilter()">Apply search filters</a>
     </div>
 
     <div class='spacer'></div>
@@ -42,10 +79,98 @@
 <script src="files/repositories/places.js"></script>
 
 <script>
+    let selectedCategories = []; // categories for filtering if enabled
+
+    // INITIALIZE PAGE (RUNS ON LOAD)
+    function initExplorePage() {
+        renderCategoryFilters();
     
+        const filters = getFiltersFromURL();
+        selectedCategories = filters.categories;
+    
+        applySelectedStyles();
+    }
+
+    // FILTER BUTTONS -------------------------------
+    
+    // Setup Filter Bubbles
+    function renderCategoryFilters() {
+        const container = document.getElementById('categoryFilters');
+        container.innerHTML = '';
+    
+        window.specificCategory.forEach((category, index) => {
+            const bubble = document.createElement('div');
+            bubble.className = 'category-bubble';
+            bubble.textContent = category;
+            bubble.dataset.index = index;
+    
+            bubble.addEventListener('click', () => toggleCategory(index, bubble));
+    
+            container.appendChild(bubble);
+        });
+    }
+
+    // Function to run when a bubble is toggled
+    function toggleCategory(index, bubble) {
+        if (selectedCategories.includes(index)) {
+            selectedCategories = selectedCategories.filter(i => i !== index);
+            bubble.classList.remove('selected');
+        } else {
+            selectedCategories.push(index);
+            bubble.classList.add('selected');
+        }
+    
+        // Show/hide Apply button
+        document.getElementById('applyFilterBtn')
+            .classList.toggle('hidden', selectedCategories.length === 0);
+    }
+
+    // Applies selected filters by reloading the page with the URL Paramaters
+    function applyCategoryFilter() {
+        if (selectedCategories.length === 0) return;
+    
+        const param = selectedCategories.join(',');
+    
+        window.location.href = `explore.html?categories=${param}`;
+    }
+
+    // Reads if there are filters in the current URL
+    function getFiltersFromURL() {
+        const params = new URLSearchParams(window.location.search);
+    
+        const categoriesParam = params.get('categories');
+    
+        let categoryFilters = [];
+    
+        if (categoriesParam) {
+            categoryFilters = categoriesParam
+                .split(',')
+                .map(num => Number(num))
+                .filter(num => !isNaN(num));
+        }
+    
+        return {
+            categories: categoryFilters
+        };
+    }
+
+    // Applies filter styles
+    function applySelectedStyles() {
+        document.querySelectorAll('.category-bubble').forEach(bubble => {
+            const index = Number(bubble.dataset.index);
+    
+            if (selectedCategories.includes(index)) {
+                bubble.classList.add('selected');
+            }
+        });
+    
+        document.getElementById('applyFilterBtn')
+            .classList.toggle('hidden', selectedCategories.length === 0);
+    }
+
 </script>
 
 <script>
-    initAttractionsPage();
+    initExplorePage();
 </script>
 </html>
