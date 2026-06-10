@@ -52,14 +52,14 @@
     }
     
         /* Tablet */
-        @media (max-width: 1000px) {
+        @media screen and (max-width: 1000px) {
             .tiles-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
         
         /* Mobile */
-        @media (max-width: 700px) {
+        @media screen and (max-width: 700px) {
             .tiles-grid {
                 grid-template-columns: 1fr;
             }
@@ -70,10 +70,10 @@
         background: white;
         border-radius: 12px;
         overflow: hidden;
-        cursor: pointer;
         border: 1px solid #ddd;
         box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         transition: transform 0.15s ease, box-shadow 0.15s ease;
+        position:relative;
     }
     
     .tile:hover {
@@ -98,6 +98,12 @@
         font-weight: 600;
         margin-bottom: 6px;
     }
+
+    .tile-description {
+        font-size: 0.9rem;
+        color: black;
+        margin-bottom: 8px;
+    }
     
     .tile-location {
         font-size: 0.9rem;
@@ -119,6 +125,8 @@
         padding: 4px 8px;
         font-size: 0.8rem;
     }
+
+    .tile > a {position:absolute; top:0; bottom:0; left:0; right:0; opacity:0;}
 
 
 </style>
@@ -160,6 +168,7 @@
 <script>
     let selectedCategories = []; // categories for filtering if enabled
     let selectedLocations = []; // locations for filtering if selected
+    var numResults = 0;
 
     // INITIALIZE PAGE (RUNS ON LOAD)
     function initExplorePage() {
@@ -174,6 +183,8 @@
         applySelectedStyles();
         
         renderTiles(); // show the attractions
+
+        console.log('Filtering: Categories:' + selectedCategories + ', Location:' + selectedLocations);
     }
 
     // FILTER BUTTONS -------------------------------
@@ -304,67 +315,47 @@
         window.location.href = 'explore.html';
     }
 
-    function filterPlaces(places) {
-        return places.filter(place => {
-            // Category match
-            const categoryMatch =
-                selectedCategories.length === 0 ||
-                (Array.isArray(place.categories) &&
-                 place.categories.some(cat => selectedCategories.includes(cat)));
-    
-            // Location match
-            const locationMatch =
-                selectedLocations.length === 0 ||
-                selectedLocations.includes(place.location);
-    
-            return categoryMatch && locationMatch;
-        });
-    }
+
 
     // Render Attraction Tiles
     function renderTiles() {
         const container = document.getElementById('tilesContainer');
         container.innerHTML = '';
-    
-        let filteredPlaces = filterPlaces(window.places); // uses your filters
-    
-        filteredPlaces.forEach(place => {
-            container.appendChild(createTile(place));
-        });
-    }
 
-    // Create a tile
-    function createTile(place) {
-        const tile = document.createElement('div');
-        tile.className = 'tile';
-    
-        const locationName = window.specificLocation[place.location] || 'Unknown';
-        const categoryNames = (place.categories || []).map(i =>
-            window.specificCategory[i] || 'Unknown'
-        );
-    
-        tile.innerHTML = `
-            <img src="${place.coverImg}" alt="${place.name}" loading="lazy">
-    
-            <div class="tile-content">
-                <div class="tile-title">${place.name}</div>
-                <div class="tile-location">${locationName}</div>
-    
-                <div class="tile-categories">
-                    ${categoryNames.map(cat => `
-                        <span class="tile-chip">${cat}</span>
-                    `).join('')}
-                </div>
-            </div>
-        `;
-    
-        // ✅ Click behavior
-        tile.addEventListener('click', () => {
-            window.location.href = `explore/place.html?n=${place.siteLink}`;
-        });
-    
-        return tile;
-    }
+        // Create each tile
+        for(i=0;i<places.length;i++){
+            // get variables
+            let thisPlace = places[i];
+            let thisPlaceDetails = placePage[i];
+
+            //Get Categories
+            var thisPlaceCategories = "";
+            for(k=0;k<thisPlace.categories.length;k++){
+                thisPlaceCategories += "<span class='tile-chip'>"+specificCategory[thisPlace.categories[k]]+"</span>";
+            }
+            
+            container.innerHTML += "<div class='tile'>\
+                <img src='"+thisPlace.coverImg+"' loading='lazy'>\
+                <div class='tile-content'>\
+                <div class='tile-title'>"+thisPlace.name+"</div>\
+                <div class='tile-description'>"+thisPlace.shortDescription+"</div>\
+                <div class='tile-location'>📍 "+specificLocation[thisPlace.location]+"</div>\
+                <div class='tile-categories'>"+thisPlaceCategories+"</div>\
+                </div>\
+                <a href='explore/place?n="+thisPlace.siteLink+"'></a>\
+                </div>";
+
+            numResults += 1;
+        }// end of for loop
+
+        // display number of results showing
+        if(numResults > 0){
+            document.getElementById("resultsCounter").innerHTML = "Showing <b>"+numResults+"</b> results";
+        }else{
+            document.getElementById("resultsCounter").innerHTML = "<b>No Results</b>. Try adjusting search criteria.";
+        }
+    }// end of setup tiles
+
 
 
 
