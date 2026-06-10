@@ -328,24 +328,42 @@
             let thisPlace = places[i];
             let thisPlaceDetails = placePage[i];
 
-            //Get Categories
-            var thisPlaceCategories = "";
-            for(k=0;k<thisPlace.categories.length;k++){
-                thisPlaceCategories += "<span class='tile-chip'>"+specificCategory[thisPlace.categories[k]]+"</span>";
+            // Check if filters apply
+            var filterCheck = true;
+            if(selectedCategories.length > 0){
+                filterCheck = false;
+                if(thisPlace.categories.some(item => selectedCategories.includes(item))){
+                    filterCheck = true;
+                }
             }
-            
-            container.innerHTML += "<div class='tile'>\
-                <img src='"+thisPlace.coverImg+"' loading='lazy'>\
-                <div class='tile-content'>\
-                <div class='tile-title'>"+thisPlace.name+"</div>\
-                <div class='tile-description'>"+thisPlace.shortDescription+"</div>\
-                <div class='tile-location'>📍 "+specificLocation[thisPlace.location]+"</div>\
-                <div class='tile-categories'>"+thisPlaceCategories+"</div>\
-                </div>\
-                <a href='explore/place?n="+thisPlace.siteLink+"'></a>\
-                </div>";
+            if(selectedLoctions.length > 0){
+                filterCheck = false;
+                if(selectedLoctions.includes(thisPlace.location)){
+                    filterCheck = true;
+                }
+            }
 
-            numResults += 1;
+            if(filterCheck == true){
+                //Get Categories
+            var thisPlaceCategories = "";
+                for(k=0;k<thisPlace.categories.length;k++){
+                    thisPlaceCategories += "<span class='tile-chip'>"+specificCategory[thisPlace.categories[k]]+"</span>";
+                }
+                
+                container.innerHTML += "<div class='tile'>\
+                    <img src='"+thisPlace.coverImg+"' loading='lazy'>\
+                    <div class='tile-content'>\
+                    <div class='tile-title'>"+thisPlace.name+"</div>\
+                    <div class='tile-description'>"+thisPlace.shortDescription+"</div>\
+                    <div class='tile-location'>📍 "+specificLocation[thisPlace.location]+"</div>\
+                    <div class='tile-categories'>"+thisPlaceCategories+"</div>\
+                    </div>\
+                    <a href='explore/place?n="+thisPlace.siteLink+"'></a>\
+                    </div>";
+    
+                numResults += 1;
+            }// create the div if it passes filter criteria
+            
         }// end of for loop
 
         // display number of results showing
