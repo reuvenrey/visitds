@@ -56,9 +56,12 @@
     </div>
 
     <div class='container'>
-        <p style='margin-bottom:0; font-size:12px;'>Filter Results</p>
+        <p style=''>Filter by Category</p>
         <div id="categoryFilters" class="category-filter-wrap"></div>
-        <a class='btn noLeft hidden' id="applyFilterBtn" style='cursor:pointer;' onclick="applyCategoryFilter()">Apply search filters</a>
+        <p style=''>Filter by Location</p>
+        <div id="locationFilters" class="category-filter-wrap"></div>
+        <a class='btn noLeft hidden' id="applyFilterBtn" style='cursor:pointer; font-size:0.9rem' onclick="applyCategoryFilter()">Apply search filters</a>
+        <a class='btn' id="applyFilterBtn" style='cursor:pointer; font-size:0.9rem' onclick="clearFilters()">Clear filters</a>
     </div>
 
     <div class='spacer'></div>
@@ -80,20 +83,24 @@
 
 <script>
     let selectedCategories = []; // categories for filtering if enabled
+    let selectedLocations = []; // locations for filtering if selected
 
     // INITIALIZE PAGE (RUNS ON LOAD)
     function initExplorePage() {
         renderCategoryFilters();
-    
+        renderLocationFilters();
+
         const filters = getFiltersFromURL();
+        
         selectedCategories = filters.categories;
-    
+        selectedLocations = filters.locations;
+
         applySelectedStyles();
     }
 
     // FILTER BUTTONS -------------------------------
     
-    // Setup Filter Bubbles
+    // Setup Category Filter Bubbles
     function renderCategoryFilters() {
         const container = document.getElementById('categoryFilters');
         container.innerHTML = '';
@@ -110,6 +117,24 @@
         });
     }
 
+    // Setup location filter buttons
+    function renderLocationFilters() {
+        const container = document.getElementById('locationFilters');
+        container.innerHTML = '';
+    
+        window.specificLocation.forEach((location, index) => {
+            const bubble = document.createElement('div');
+            bubble.className = 'category-bubble';
+            bubble.textContent = location;
+            bubble.dataset.index = index;
+    
+            bubble.addEventListener('click', () => toggleLocation(index, bubble));
+    
+            container.appendChild(bubble);
+        });
+    }
+
+
     // Function to run when a bubble is toggled
     function toggleCategory(index, bubble) {
         if (selectedCategories.includes(index)) {
@@ -119,54 +144,88 @@
             selectedCategories.push(index);
             bubble.classList.add('selected');
         }
-    
-        // Show/hide Apply button
-        document.getElementById('applyFilterBtn')
-            .classList.toggle('hidden', selectedCategories.length === 0);
     }
+
+    // run when location filter toggle is selcted
+    function toggleLocation(index, bubble) {
+        if (selectedLocations.includes(index)) {
+            selectedLocations = selectedLocations.filter(i => i !== index);
+            bubble.classList.remove('selected');
+        } else {
+            selectedLocations.push(index);
+            bubble.classList.add('selected');
+        }
+    }
+
 
     // Applies selected filters by reloading the page with the URL Paramaters
     function applyCategoryFilter() {
-        if (selectedCategories.length === 0) return;
+        const params = new URLSearchParams();
     
-        const param = selectedCategories.join(',');
+        if (selectedCategories.length > 0) {
+            params.set('categories', selectedCategories.join(','));
+        }
     
-        window.location.href = `explore.html?categories=${param}`;
+        if (selectedLocations.length > 0) {
+            params.set('locations', selectedLocations.join(','));
+        }
+    
+        window.location.href = `explore.html?${params.toString()}`;
     }
+
 
     // Reads if there are filters in the current URL
     function getFiltersFromURL() {
         const params = new URLSearchParams(window.location.search);
     
-        const categoriesParam = params.get('categories');
-    
         let categoryFilters = [];
+        let locationFilters = [];
+    
+        const categoriesParam = params.get('categories');
+        const locationsParam = params.get('locations');
     
         if (categoriesParam) {
             categoryFilters = categoriesParam
                 .split(',')
-                .map(num => Number(num))
-                .filter(num => !isNaN(num));
+                .map(Number)
+                .filter(n => !isNaN(n));
+        }
+    
+        if (locationsParam) {
+            locationFilters = locationsParam
+                .split(',')
+                .map(Number)
+                .filter(n => !isNaN(n));
         }
     
         return {
-            categories: categoryFilters
+            categories: categoryFilters,
+            locations: locationFilters
         };
     }
 
     // Applies filter styles
     function applySelectedStyles() {
-        document.querySelectorAll('.category-bubble').forEach(bubble => {
+    // Categories
+    document.querySelectorAll('#categoryFilters .category-bubble')
+        .forEach(bubble => {
             const index = Number(bubble.dataset.index);
-    
-            if (selectedCategories.includes(index)) {
-                bubble.classList.add('selected');
-            }
+            bubble.classList.toggle('selected', selectedCategories.includes(index));
         });
-    
-        document.getElementById('applyFilterBtn')
-            .classList.toggle('hidden', selectedCategories.length === 0);
+
+    // Locations
+    document.querySelectorAll('#locationFilters .category-bubble')
+        .forEach(bubble => {
+            const index = Number(bubble.dataset.index);
+            bubble.classList.toggle('selected', selectedLocations.includes(index));
+        });
+    }// end applyStyles
+
+    // Clear any selected filters
+    function clearFilters() {
+        window.location.href = 'explore.html';
     }
+
 
 </script>
 
