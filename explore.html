@@ -304,6 +304,23 @@
         window.location.href = 'explore.html';
     }
 
+    function filterPlaces(places) {
+        return places.filter(place => {
+            // Category match
+            const categoryMatch =
+                selectedCategories.length === 0 ||
+                (Array.isArray(place.categories) &&
+                 place.categories.some(cat => selectedCategories.includes(cat)));
+    
+            // Location match
+            const locationMatch =
+                selectedLocations.length === 0 ||
+                selectedLocations.includes(place.location);
+    
+            return categoryMatch && locationMatch;
+        });
+    }
+
     // Render Attraction Tiles
     function renderTiles() {
         const container = document.getElementById('tilesContainer');
