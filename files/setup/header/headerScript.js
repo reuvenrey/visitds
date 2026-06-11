@@ -13,7 +13,7 @@ pgHead.innerHTML += '<meta charset="UTF-8">  <meta name="viewport" content="widt
 // Populate the HEADER
 header.innerHTML = "<div id='headerBar'><div id='hbContent'></div> \
     <div class='hbMenu hidden' id='exploreMenuLarge'><h3 style='margin:0px 0px 10px 0px;'>Explore <span class='cursive' style='color:gold;'>DS</span></h3><div class='hbBoldLinks'><a href='"+websiteLink+"explore'>&#8594; Explore Desert Springs</a><a href='"+websiteLink+"explore/places-to-visit'>&#8594; Discover Districts & Cities</a><a>&#8594; View Events Calendar</a></div>\
-        <img class='hbmIcon hidden' id='hbmExplore' src='"+websiteLink+"files/images/icons/categoryIcon-3.png'> <img class='hbmIcon hidden' id='hbmDistricts' src='"+websiteLink+"files/images/icons/categoryIcon-7.png'> <img class='hbmIcon hidden' id='hbmCalendar' src='"+websiteLink+"files/images/icons/categoryIcon-9.png'></div></div> \
+        </div></div> \
     <div class='hbMenu hidden' id='infoMenuLarge'><h3 style='margin:0px 0px 10px 0px;'>Visitor Information</h3><div class='hbBoldLinks'><a>&#8594; Travel Guides & Articles</a> <a>&#8594; Transportation & Parking</a></div></div> \
     </div>\
      <div class='hbSideMenu hidden' id='headerSideMenu'><div class='hbBoldLinks'><a href=''>Discover <span class='cursive'>DS</span> Districts</a> <a href='"+websiteLink+"explore'>Explore Desert Springs</a> <a>View Events Calendar</a></div> <br><div class='spacer noMargin'></div> \
