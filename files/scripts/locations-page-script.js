@@ -16,10 +16,10 @@ function setupLocationPage(){
 
 		if(i % 2 === 0){
 			// even DIV (img comes first)
-			placeContent = "<img src='"+placeImg+"'><div><h2>"+placeName+"</h2>"+placeDesc+"<p><a class='btn cyan filled noLeft' href='../explore?locations="+i+"'></a></p></div>";
+			placeContent = "<img src='"+placeImg+"'><div><h2>"+placeName+"</h2>"+placeDesc+"<p><a class='btn cyan filled noLeft' href='../explore?locations="+i+"'>View places in "+placeName+"</a></p></div>";
 		}else{
 			// odd DIV (img comes last)
-			placeContent = "<div><h2>"+placeName+"</h2>"+placeDesc+"<p><a class='btn gold filled noLeft' href='../explore?locations="+i+"'></a></p></div><img src='"+placeImg+"'>";
+			placeContent = "<div><h2>"+placeName+"</h2>"+placeDesc+"<p><a class='btn gold filled noLeft' href='../explore?locations="+i+"'>View places in "+placeName+"</a></p></div><img src='"+placeImg+"'>";
 		}
 
 		mainDiv.innerHTML += "<div class='container'><div class='columnContainer'>"+placeContent+"</div></div>";
