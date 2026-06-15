@@ -38,7 +38,7 @@ header.innerHTML = "<div id='headerBar'><div id='hbContent'></div> \
     }
 
 // Populate the FOOTER
-footer.innerHTML = "<div id='footerContent'><p style='color:lightgray'>© 2025 Desert Springs Ministry of Recreation | Department of Tourism</p><p><a href='"+websiteLink+"files/setup/attraction-object-builder.html'>Attraction Builder</a></p></div>";
+footer.innerHTML = "<div id='footerContent'><p style='color:lightgray'>© 2025 Desert Springs Ministry of Recreation | Department of Tourism</p><p style='font-size:12px'><b>AI Disclaimer</b> While some of the code and formatting on this site was developed with help from AI tools, the formatting and content was entirely written and designed by myself with the help of a thesaurus (because what's the fun in letting AI talk about MY city instead of me ٩(◕‿◕)۶ )</p><p><a href='"+websiteLink+"files/setup/attraction-object-builder.html'>Attraction Builder</a></p></div>";
 
 // Populate the loader
 pgLoader.innerHTML = "<img src='"+websiteLink+"files/images/siteIcon.ico'>";
