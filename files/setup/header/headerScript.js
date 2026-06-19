@@ -10,15 +10,32 @@ pgHead.innerHTML += '<meta charset="UTF-8">  <meta name="viewport" content="widt
     <link href="https://fonts.googleapis.com/css?family=Funnel+Sans|Lexend+Deca|Corinthia" rel="stylesheet"> \
     <link rel="icon" type="image/x-icon" href="'+websiteLink+'files/images/siteIcon.ico">'; 
 
-// Populate the HEADER
+// Populate the HEADER menus
 header.innerHTML = "<div id='headerBar'><div id='hbContent'></div> \
-    <div class='hbMenu hidden' id='exploreMenuLarge'><h3 style='margin:0px 0px 10px 0px;'>Explore <span class='cursive' style='color:gold;'>DS</span></h3><div class='hbBoldLinks'><a href='"+websiteLink+"explore'>&#8594; Explore Desert Springs</a><a href='"+websiteLink+"explore/places-to-visit'>&#8594; Discover Districts & Cities</a><a>&#8594; View Events Calendar</a></div>\
+    <div class='hbMenu hidden' id='exploreMenuLarge'><h3 style='margin:0px 0px 10px 0px;'>Explore <span class='cursive' style='color:gold;'>DS</span></h3>\
+		<div class='hbBoldLinks'>\
+			<a href='"+websiteLink+"explore'>&#8594; Explore Desert Springs</a>\
+			<a href='"+websiteLink+"explore/places-to-visit'>&#8594; Discover Districts & Cities</a>\
+			<a href='"+websiteLink+"explore/map'>&#8594; Tour Interactive Map</a>\
+			<a href='"+websiteLink+"explore/calendar'>&#8594; View Events Calendar</a></div>\
         </div></div> \
-    <div class='hbMenu hidden' id='infoMenuLarge'><h3 style='margin:0px 0px 10px 0px;'>Visitor Information</h3><div class='hbBoldLinks'><a>&#8594; Travel Guides & Articles</a> <a>&#8594; Transportation & Parking</a></div></div> \
+    <div class='hbMenu hidden' id='infoMenuLarge'><h3 style='margin:0px 0px 10px 0px;'>ℹ️ Plan Your Visit</h3>\
+		<div class='hbBoldLinks'><a href='"+websiteLink+"information/visitor-guides'>&#8594; DS Visitor Guides</a>\
+		<a href='"+websiteLink+"information/transportation'>&#8594; Transportation & Parking</a>\
+		<a href='"+websiteLink+"information/guidelines'>&#8594; Know Before You Go</a></div></div> \
     </div>\
-     <div class='hbSideMenu hidden' id='headerSideMenu'><div class='hbBoldLinks'><a href=''>Discover <span class='cursive'>DS</span> Districts</a> <a href='"+websiteLink+"explore'>Explore Desert Springs</a> <a>View Events Calendar</a></div> <br><div class='spacer noMargin'></div> \
-     <br><div class='hbBoldLinks'><a href='"+websiteLink+"explore/attractions?categories=0'>Places to Stay</a></div> <br><div class='spacer noMargin'></div> \
-     <br><div class='hbBoldLinks'><a>Visitor Guides & Articles</a> <a>Transportation & Parking</a></div> </div>\
+     <div class='hbSideMenu hidden' id='headerSideMenu'> <div class='hbBoldLinks'>\
+		<a href='"+websiteLink+"explore'>Explore <span class='cursive'>DS</span></a>\
+		<a href='"+websiteLink+"explore/places-to-visit'>Discover Districts & Neighborhoods</a>\
+		<a href='"+websiteLink+"explore/map'>Interactive Map</a>\
+		<a href='"+websiteLink+"explore/calendar'>&#8594; View Events Calendar</a>\
+	</div> <div class='spacer'></div>\
+	<div class='hbBoldLinks'>\
+		<a href='"+websiteLink+"information/visitor-guides'>&#8594; DS Visitor Guides</a>\
+		<a href='"+websiteLink+"information/transportation'>&#8594; Transportation & Parking</a>\
+		<a href='"+websiteLink+"information/guidelines'>&#8594; Know Before You Go</a>\
+	</div> <div class='spacer'></div> \
+	<div class='hbBoldLinks'><a href='"+websiteLink+"download'>✈️ Visit</a></div> </div>\
      </div>"; // <--  end of setting up header bar with menus
 
     // Setup header links
@@ -27,8 +44,8 @@ header.innerHTML = "<div id='headerBar'><div id='hbContent'></div> \
         <div id='headerLinks'></div>"; // holds the links to pages and menus ETC.
 
         // Contents of the Header Links Section:
-        const smallHeaderContents = "<a href='"+websiteLink+"search'><img src='"+websiteLink+"files/images/icons/search-white.png'></a> <a onclick='toggleMenu(\"headerSideMenu\");'><img src='"+websiteLink+"files/images/icons/menu-white.png'></a>";
-        const largeHeaderContents = "<a onclick='toggleMenu(\"exploreMenuLarge\");'>Explore <span class='cursive'>DS</span> &#11206;</a> <a href='"+websiteLink+"explore/attractions?categories=0'>Hotels & Resorts</a> <a onclick='toggleMenu(\"infoMenuLarge\");'>Information &#11206;</a> <a href='"+websiteLink+"search'><img src='"+websiteLink+"files/images/icons/search-white.png'></a>";
+        const smallHeaderContents = "<a href='"+websiteLink+"search'><img src='"+websiteLink+"files/images/icons/search-white.png'></a> <a onclick='toggleMenu(\"headerSideMenu\");'><img src='"+websiteLink+"files/images/icons/menu-white.png'></a> <a href='"+websiteLink+"download'>✈️ Visit</a>";
+        const largeHeaderContents = "<a onclick='toggleMenu(\"exploreMenuLarge\");'>Explore <span class='cursive'>DS</span> &#11206;</a> <a onclick='toggleMenu(\"infoMenuLarge\");'>Plan Your Visit &#11206;</a> <a href='"+websiteLink+"search'><img src='"+websiteLink+"files/images/icons/search-white.png'></a>";
 
     if(window.innerWidth <= 1000){ // Reduced Header
         document.getElementById("headerLinks").innerHTML = smallHeaderContents;
@@ -38,7 +55,9 @@ header.innerHTML = "<div id='headerBar'><div id='hbContent'></div> \
     }
 
 // Populate the FOOTER
-footer.innerHTML = "<div id='footerContent'><p style='color:lightgray'>© 2025 Desert Springs Ministry of Recreation | Department of Tourism</p><p style='font-size:12px'><b>AI Disclaimer</b> While some of the code and formatting on this site was developed with help from AI tools, the formatting and content was entirely written and designed by myself with the help of a thesaurus (because what's the fun in letting AI talk about MY city instead of me ٩(◕‿◕)۶ )</p><p><a href='"+websiteLink+"files/setup/attraction-object-builder.html'>Attraction Builder</a></p></div>";
+footer.innerHTML = "<div id='footerContent'><p style='color:lightgray'>© 2025 Desert Springs Ministry of Recreation | Department of Tourism</p><div class='spacer'></div>\
+	<p style='font-size:15px'><b>AI Disclaimer</b> | Some of the coding and CSS on this website was developed using AI tools. Everything else - including the ideas, text, descriptions, images, and overall design - was developed by me using my own creativity (and a thesaurus).</p>\
+	<p><a href='"+websiteLink+"files/setup/attraction-object-builder.html'>Attraction Builder</a></p></div>";
 
 // Populate the loader
 pgLoader.innerHTML = "<img src='"+websiteLink+"files/images/siteIcon.ico'>";
