@@ -28,13 +28,13 @@ header.innerHTML = "<div id='headerBar'><div id='hbContent'></div> \
 		<a href='"+websiteLink+"explore'>Explore <span class='cursive'>DS</span></a>\
 		<a href='"+websiteLink+"explore/places-to-visit'>Discover Districts & Neighborhoods</a>\
 		<a href='"+websiteLink+"explore/map'>Interactive Map</a>\
-		<a href='"+websiteLink+"explore/calendar'>&#8594; View Events Calendar</a>\
-	</div> <div class='spacer'></div>\
+		<a href='"+websiteLink+"explore/calendar'>View Events Calendar</a>\
+	</div> <br><div class='spacer noMargin'></div><br> \
 	<div class='hbBoldLinks'>\
-		<a href='"+websiteLink+"information/visitor-guides'>&#8594; DS Visitor Guides</a>\
-		<a href='"+websiteLink+"information/transportation'>&#8594; Transportation & Parking</a>\
-		<a href='"+websiteLink+"information/guidelines'>&#8594; Know Before You Go</a>\
-	</div> <div class='spacer'></div> \
+		<a href='"+websiteLink+"information/visitor-guides'>DS Visitor Guides</a>\
+		<a href='"+websiteLink+"information/transportation'>Transportation & Parking</a>\
+		<a href='"+websiteLink+"information/guidelines'>Know Before You Go</a>\
+	</div> <br><div class='spacer noMargin'></div><br> \
 	<div class='hbBoldLinks'><a href='"+websiteLink+"download'>✈️ Visit</a></div> </div>\
      </div>"; // <--  end of setting up header bar with menus
 
@@ -44,8 +44,8 @@ header.innerHTML = "<div id='headerBar'><div id='hbContent'></div> \
         <div id='headerLinks'></div>"; // holds the links to pages and menus ETC.
 
         // Contents of the Header Links Section:
-        const smallHeaderContents = "<a href='"+websiteLink+"search'><img src='"+websiteLink+"files/images/icons/search-white.png'></a> <a onclick='toggleMenu(\"headerSideMenu\");'><img src='"+websiteLink+"files/images/icons/menu-white.png'></a> <a href='"+websiteLink+"download'>✈️ Visit</a>";
-        const largeHeaderContents = "<a onclick='toggleMenu(\"exploreMenuLarge\");'>Explore <span class='cursive'>DS</span> &#11206;</a> <a onclick='toggleMenu(\"infoMenuLarge\");'>Plan Your Visit &#11206;</a> <a href='"+websiteLink+"search'><img src='"+websiteLink+"files/images/icons/search-white.png'></a>";
+        const smallHeaderContents = "<a href='"+websiteLink+"search'><img src='"+websiteLink+"files/images/icons/search-white.png'></a> <a onclick='toggleMenu(\"headerSideMenu\");'><img src='"+websiteLink+"files/images/icons/menu-white.png'></a>";
+        const largeHeaderContents = "<a onclick='toggleMenu(\"exploreMenuLarge\");'>Explore <span class='cursive'>DS</span> &#11206;</a> <a onclick='toggleMenu(\"infoMenuLarge\");'>Plan Your Visit &#11206;</a> <a href='"+websiteLink+"download'>✈️ Visit</a> <a href='"+websiteLink+"search'><img src='"+websiteLink+"files/images/icons/search-white.png'></a>";
 
     if(window.innerWidth <= 1000){ // Reduced Header
         document.getElementById("headerLinks").innerHTML = smallHeaderContents;
