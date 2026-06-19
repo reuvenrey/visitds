@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head id='pgHead'>
+        <!--
+        ALWAYS REMEMBER TO ADJUST STYLESHEET AND SCRIPT LINKS BASED ON PAGE LOCATION
+        -->
+        <link rel='stylesheet' href='../files/setup/header/headerStyle.css'>
+        <link rel="stylesheet" href="../files/setup/styleSheet.css">
+        <title>Interactive Map | Visit Desert Springs</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+
+<body onload='finishLoad(); initMapPage();'>
+    <div id='pgLoader'></div><div id='pgHeader'></div>
+
+    <style>
+        .map-page {
+            max-width: 1280px;
+            margin: 24px auto 40px;
+            padding: 0 16px;
+            box-sizing: border-box;
+        }
+
+        .map-page h1 {
+            margin: 0 0 8px;
+            text-align: center;
+        }
+
+        .map-page .intro {
+            text-align: center;
+            color: #555;
+            max-width: 860px;
+            margin: 0 auto 20px;
+            line-height: 1.5;
+        }
+
+        .map-note {
+            background: #fff8e1;
+            color: #6b5600;
+            border: 1px solid #ead28b;
+            border-radius: 10px;
+            padding: 10px 12px;
+            margin: 0 auto 18px;
+            max-width: 1100px;
+            line-height: 1.45;
+        }
+
+        .map-shell {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+
+        .map-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-bottom: 1px solid #eee;
+            flex-wrap: wrap;
+        }
+
+        .map-toolbar .meta {
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .map-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 14px;
+            align-items: center;
+        }
+
+        .legend-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            border: 1px solid rgba(0,0,0,0.2);
+        }
+
+        .map-container {
+            position: relative;
+            width: 100%;
+            background: #f5f5f5;
+            overflow: hidden;
+        }
+
+        .map-background {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        #mapPins {
+            position: absolute;
+            inset: 0;
+        }
+
+        .map-pin {
+            position: absolute;
+            transform: translate(-50%, -100%);
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .map-pin::before {
+            content: "";
+            display: block;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--pin-color, #666);
+            border: 2px solid white;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.35);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .map-pin:hover::before {
+            transform: scale(1.18);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        }
+
+        .map-tooltip {
+            position: absolute;
+            left: 50%;
+            bottom: calc(100% + 8px);
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.82);
+            color: white;
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-size: 0.83rem;
+            line-height: 1.2;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.15s ease;
+        }
+
+        .map-pin:hover .map-tooltip,
+        .map-pin:focus .map-tooltip {
+            opacity: 1;
+        }
+
+        .map-pin:focus {
+            outline: none;
+        }
+
+        .map-pin:focus-visible::before {
+            outline: 2px solid #111;
+            outline-offset: 3px;
+        }
+
+        @media screen and (max-width: 900px) {
+            .map-toolbar {
+                align-items: flex-start;
+            }
+        }
+
+        @media screen and (max-width: 700px) {
+            .map-page {
+                padding: 0 12px;
+            }
+
+            .map-toolbar {
+                padding: 12px;
+            }
+
+            .map-tooltip {
+                white-space: normal;
+                min-width: 110px;
+                text-align: center;
+            }
+        }
+    </style>
+
+    <!-- BODY CONTENT HERE -->
+    <div class='container'>
+      <h1>Interactive Map</h1>
+      Visually explore the locations of places around Desert Springs. If you'd like more details, click on a place or visit <a href='../explore'>Explore</a> to view places in a grid layout.
+    </div>
+  
+    <main class="map-page">
+        
+        <section class="map-shell">
+            <div class="map-toolbar">
+                <div class="meta" id="mapMeta">Loading mapped attractions...</div>
+                <div id="mapLegend" class="map-legend"></div>
+            </div>
+
+            <div class="map-container">
+                <img
+                    src="https://i.pinimg.com/736x/24/34/d1/2434d13db14ff19b52fc6d8a8c843e98.jpg"
+                    alt="Visit Desert Springs map background"
+                    class="map-background"
+                    id="mapBackground"
+                >
+                <div id="mapPins"></div>
+            </div>
+        </section>
+    </main>
+    <!-- END OF BODY CONTENT -->
+
+    <div id='pgFooter'></div>
+</body>
+    <!-- Load and run script to setup header and footer -->
+    <script src="../files/setup/header/headerScript.js"></script>
+    <script src="../files/repositories/basicInfo.js"></script>
+    <script src="../files/repositories/places.js"></script>
+    <script src='../files/scripts/map-script.js'></script>
+</html>
