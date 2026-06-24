@@ -19,6 +19,60 @@
 			@media screen and (max-width:1019px){
 				#indexHeader {display:none; pointer-events:none;}
 			}
+
+			/* Custom Hero for the home page */
+			.hero {
+			    position: relative;
+			    width: 100%;
+			    height: 100vh;
+			    overflow: hidden;
+			}
+				.hero-carousel {
+				    position: absolute;
+				    top: 0;
+				    left: 0;
+				    height: 100%;
+				    display: flex;
+				    width: fit-content;
+				    animation: scrollHero 70s linear infinite;
+				}
+					.hero-carousel img {
+					    height: 100%;
+					    width: auto;
+					    object-fit: cover;
+						animation: zoom 20s ease-in-out infinite alternate;
+					}
+				.hero-overlay {
+				    position: absolute;
+				    inset: 0;
+				    background: rgba(0, 0, 0, 0.45); /* semi-transparent */
+				    display: flex;
+				    align-items: center;
+				    justify-content: center;
+				}
+					.hero-content {
+					    color: white;
+					    text-align: center;
+					    max-width: 800px;
+					    padding: 20px;
+					}
+
+
+				/* HEro animation */
+				@keyframes scrollHero {
+				    0% {
+				        transform: translateX(0);
+				    }
+				    100% {
+				        transform: translateX(-50%);
+				    }
+				}
+				@keyframes zoom {
+				    from { transform: scale(1); }
+				    to   { transform: scale(1.05); }
+				}
+
+
 		</style>
 
 		<!-- BODY CONTENT HERE -->
@@ -35,6 +89,30 @@
 			</div>
 		</div>
 
+		<section class="hero">
+		    <div class="hero-carousel"> <!-- duplicate images (have two sets of the carosel E.G. im1,im2,im1,im2) -->
+		        <img src="https://i.imgur.com/UEjz1lO.png">
+		        <img src="https://i.imgur.com/GJup5DV.png">
+		        <img src="https://i.imgur.com/1vBfNU9.png">
+				<!-- copy -->
+				<img src="https://i.imgur.com/UEjz1lO.png">
+		        <img src="https://i.imgur.com/GJup5DV.png">
+		        <img src="https://i.imgur.com/1vBfNU9.png">
+		    </div>
+	
+		    <div class="hero-overlay">
+		        <div class="hero-content">
+		            <h1 style='font-size:80px; color:#FFC857; font-family: Corinthia; line-height:0.8;'>Welcome to the Adventure!</h1>
+					<h2 style="margin-top:0; font-weight: normal;">Desert Springs is where life comes to happen.</h2><br>
+					<a href='explore/about' class="btn gold filled">About Desert Springs</a><a class="btn cyan filled" href="explore">Explore Places to Visit</a></p>
+		        </div>
+		    </div>
+	</section>
+
+
+		
+
+	<!-- old banner 
 		<div class='banner cover'>
 			<img src='https://i.imgur.com/UEjz1lO.png'>
 			<div class='overlay'>
@@ -45,6 +123,7 @@
 				</div>
 			</div>
 		</div>
+	-->
 
 		<div class='section blue' style='margin-top:0;'>
 			<div class='container'>
@@ -56,11 +135,11 @@
 
 		<div class='container'>
 			<div class='columnContainer'>
-				<img src='https://i.imgur.com/MIxW4Xh.png'>
+				<img src='https://i.imgur.com/k6xD7Ll.png'>
 				<div>
 					<h2>Why be anywhere else?</h2>
-					This is a paragraph, it's a really good paragraph. It's so good that as soon as you stop reading this it will exit your memory like a fart in the wind.
-					<p><a class='btn filled noLeft cyan'>Call to Action</a></p>
+					Come to visit, and you'll fall in love. Tight cooridors lined with colorful storefronts, bustling community centers shaded by trees, and neighborhoods that always feel like home - the city is yours to explore!
+					<p><a class='btn filled noLeft cyan' href='explore/places-to-visit'>View Neighborhoods & Districts</a></p>
 				</div>
 			</div>
 		</div>
@@ -70,11 +149,11 @@
 		<div class='container'>
 			<div class='columnContainer'>
 				<div>
-					<h2>Why be anywhere else?</h2>
-					This is a paragraph, it's a really good paragraph. It's so good that as soon as you stop reading this it will exit your memory like a fart in the wind.
-					<p><a class='btn filled noLeft gold'>Call to Action</a></p>
+					<h2>The City that Remembers to Have Fun</h2>
+					Skyscraping Casinos, dozens of broadway-level theaters, expansive parks and recreational spaces... whatever your idea of fun may be, you'll find it in Desert Springs
+					<p><a class='btn filled noLeft gold' href='explore.html?categories=1%2C3%2C4%2C8%2C9%2C11%2C5%2C2'>Explore Fun Activities</a></p>
 				</div>
-				<img src='https://i.imgur.com/QlCyRzj.png'>
+				<img src='https://i.imgur.com/MIxW4Xh.png'>
 			</div>
 		</div>
 		
