@@ -162,6 +162,23 @@
         color: white;
         border-color: #0f6cbd;
     }
+
+    
+    .slideshow-preview {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 10px;
+    }
+    
+    .slideshow-preview img {
+        width: 70px;
+        height: 70px;
+        object-fit: cover;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+    }
+
     </style>
 
     <!-- BODY CONTENT HERE -->
@@ -199,19 +216,19 @@
                     <label for="completenessSelect">Completeness</label>
                     <select id="completenessSelect"></select>
                 </div>
+                
                 <div class="field full">
-                    <label>Categories</label>
-                    <table class="checkbox-table">
-                        <thead>
-                            <tr>
-                                <th style="width: 90px;">Select</th>
-                                <th>Category</th>
-                                <th style="width: 90px;">Index</th>
-                            </tr>
-                        </thead>
-                        <tbody id="categoryTableBody"></tbody>
-                    </table>
+                    <label for="coverImageInput">Cover Image</label>
+                    <div style="display:flex; gap:12px; align-items:center;">
+                        <input type="url" id="coverImageInput" 
+                            value="https://reuvenrey.github.io/visitds/files/images/placeholder.jpg">
+                
+                        <img id="coverPreview" 
+                             src="https://reuvenrey.github.io/visitds/files/images/placeholder.jpg"
+                             style="width:80px; height:80px; object-fit:cover; border-radius:6px; border:1px solid #ccc;">
+                    </div>
                 </div>
+
             </div>
         </section>
 
@@ -267,6 +284,7 @@
                     <label for="slideshowLinksInput">Slideshow Image URLs</label>
                     <input type="text" id="slideshowLinksInput" placeholder="Separate image URLs with commas">
                 </div>
+                <div id="slideshowPreview" class="slideshow-preview hidden"></div>
             </div>
 
             <div class="actions">
@@ -313,10 +331,21 @@
 
     function bindEvents() {
         const slideshowToggle = document.getElementById('includeSlideshowToggle');
-        slideshowToggle.addEventListener('change', function() {
-            document.getElementById('slideshowFieldWrap').classList.toggle('hidden', !this.checked);
+    
+        slideshowToggle.addEventListener('change', function () {
+            document.getElementById('slideshowFieldWrap')
+                .classList.toggle('hidden', !this.checked);
+    
+            updateSlideshowPreview(); // preview slideshow images
         });
-    }
+    
+        // ✅ Live updates
+        document.getElementById('coverImageInput')
+            .addEventListener('input', updateCoverPreview);
+    
+        document.getElementById('slideshowLinksInput')
+            .addEventListener('input', updateSlideshowPreview);
+    }// end of function bind events
 
     function showArrayWarningIfUsingFallback() {
         const usingFallback =
@@ -467,6 +496,13 @@
         document.getElementById('completenessSelect').selectedIndex = 0;
         document.getElementById('generatedCode').value = '';
         document.getElementById('copyStatus').textContent = '';
+
+        // Reset image previews
+        document.getElementById('coverPreview').src =
+            'https://reuvenrey.github.io/visitds/files/images/placeholder.jpg';
+        
+        document.getElementById('slideshowPreview').innerHTML = '';
+        document.getElementById('slideshowPreview').classList.add('hidden');
     }
 
     // TAGS
@@ -592,7 +628,51 @@
             document.getElementById('slideshowLinksInput').value =
                 hasSlideshow ? page.slideshowLinks.join(', ') : '';
         }
+        // update image previews with imported data
+        updateCoverPreview();
+        updateSlideshowPreview();
+
     }// end of function importAttraction
+
+    // Preview linked images
+    function updateCoverPreview() {
+        const input = document.getElementById('coverImageInput');
+        const preview = document.getElementById('coverPreview');
+    
+        preview.src = input.value || 
+            "https://reuvenrey.github.io/visitds/files/images/placeholder.jpg";
+    }
+    // Preview linked images - slideshow
+    function updateSlideshowPreview() {
+        const container = document.getElementById('slideshowPreview');
+        const input = document.getElementById('slideshowLinksInput');
+        const enabled = document.getElementById('includeSlideshowToggle').checked;
+    
+        container.innerHTML = '';
+    
+        if (!enabled) {
+            container.classList.add('hidden');
+            return;
+        }
+    
+        const links = parseCommaSeparatedList(input.value);
+    
+        if (links.length === 0) {
+            container.classList.add('hidden');
+            return;
+        }
+    
+        container.classList.remove('hidden');
+    
+        links.forEach(link => {
+            const img = document.createElement('img');
+            img.src = link;
+            img.onerror = () => img.style.border = "2px solid red"; // highlight broken images
+            container.appendChild(img);
+        });
+    }
+
+
 
 </script>
 </html>
