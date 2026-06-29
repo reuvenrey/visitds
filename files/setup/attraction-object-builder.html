@@ -216,19 +216,20 @@
                     <label for="completenessSelect">Completeness</label>
                     <select id="completenessSelect"></select>
                 </div>
-                
+                <!-- Large table of categories to select from -->
                 <div class="field full">
-                    <label for="coverImageInput">Cover Image</label>
-                    <div style="display:flex; gap:12px; align-items:center;">
-                        <input type="url" id="coverImageInput" 
-                            value="https://reuvenrey.github.io/visitds/files/images/placeholder.jpg">
-                
-                        <img id="coverPreview" 
-                             src="https://reuvenrey.github.io/visitds/files/images/placeholder.jpg"
-                             style="width:80px; height:80px; object-fit:cover; border-radius:6px; border:1px solid #ccc;">
-                    </div>
+                    <label>Categories</label>
+                    <table class="checkbox-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 90px;">Select</th>
+                                <th>Category</th>
+                                <th style="width: 90px;">Index</th>
+                            </tr>
+                        </thead>
+                        <tbody id="categoryTableBody"></tbody>
+                    </table>
                 </div>
-
             </div>
         </section>
 
@@ -243,10 +244,18 @@
                     <label for="siteLinkInput">Site Link</label>
                     <input type="text" id="siteLinkInput" placeholder='example-link'>
                 </div>
-                <div class="field full">
-                    <label for="coverImageInput">Cover Image</label>
-                    <input type="url" id="coverImageInput" value="https://reuvenrey.github.io/visitds/files/images/placeholder.jpg">
-                </div>
+                <!-- cover image with preview -->
+                    <div class="field full">
+                        <label for="coverImageInput">Cover Image</label>
+                        <div style="display:flex; gap:12px; align-items:center;">
+                            <input type="url" id="coverImageInput" 
+                                value="https://reuvenrey.github.io/visitds/files/images/placeholder.jpg">
+                    
+                            <img id="coverPreview" 
+                                 src="https://reuvenrey.github.io/visitds/files/images/placeholder.jpg"
+                                 style="width:80px; height:80px; object-fit:cover; border-radius:6px; border:1px solid #ccc;">
+                        </div>
+                    </div>
                 <div class="field full">
                     <label for="briefDescriptionInput">Brief Description</label>
                     <input type="text" id="briefDescriptionInput">
