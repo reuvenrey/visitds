@@ -313,6 +313,8 @@
     </main>
     <!-- END OF BODY CONTENT -->
 
+    <div class='container' id='previewPageContainer'></div>
+
     <div id='pgFooter'></div>
 </body>
 
@@ -471,6 +473,9 @@
 
         document.getElementById('generatedCode').value = output;
         document.getElementById('copyStatus').textContent = '';
+
+        // Update preview container
+        document.getElementById('previewPageContainer').innerHTML = "<h1>Page Preview</h1><div class='spacer'></div><br><br>" + longDescription;
     }
 
     async function copyGeneratedCode() {
@@ -512,6 +517,8 @@
         
         document.getElementById('slideshowPreview').innerHTML = '';
         document.getElementById('slideshowPreview').classList.add('hidden');
+
+        document.getElementById('previewPageContainer').innerHTML = '';
     }
 
     // TAGS
