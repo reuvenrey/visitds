@@ -172,8 +172,8 @@
     }
     
     .slideshow-preview img {
-        width: 70px;
-        height: 70px;
+        width: 100px;
+        height: 80px;
         object-fit: cover;
         border-radius: 6px;
         border: 1px solid #ccc;
@@ -291,7 +291,7 @@
                 </div>
                 <div class="field full hidden" id="slideshowFieldWrap">
                     <label for="slideshowLinksInput">Slideshow Image URLs</label>
-                    <input type="text" id="slideshowLinksInput" placeholder="Separate image URLs with commas">
+                    <textarea id="slideshowLinksInput" placeholder="Separate image URLs with commas"></textarea>
                 </div>
                 <div id="slideshowPreview" class="slideshow-preview hidden"></div>
             </div>
@@ -447,7 +447,7 @@
             .replace(/\n/g, '<br>');
 
         const includeSlideshow = document.getElementById('includeSlideshowToggle').checked;
-        const slideshowLinks = parseCommaSeparatedList(getTrimmedValue('slideshowLinksInput'));
+        const slideshowLinks = parseCommaSeparatedList(document.getElementById('slideshowLinksInput').value.trim());
 
         let output = '';
         output += 'iter+=1;\n';
